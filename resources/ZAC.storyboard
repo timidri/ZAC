@@ -26,17 +26,17 @@
             </objects>
             <point key="canvasLocation" x="420" y="477"/>
         </scene>
-        <!--Table View Controller - Teams-->
+        <!--Teams Controller - Teams-->
         <scene sceneID="guG-w6-A6l">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5BH-6k-7mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="38M-8A-cEz" sceneMemberID="viewController">
+                <tableViewController id="38M-8A-cEz" customClass="ZACTeamsController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xkq-Dq-WIW">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="IeU-Sc-UmS" detailTextLabel="rzJ-C5-UMr" style="IBUITableViewCellStyleSubtitle" id="D85-1Y-MDl">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamCell" textLabel="IeU-Sc-UmS" detailTextLabel="rzJ-C5-UMr" style="IBUITableViewCellStyleSubtitle" id="D85-1Y-MDl">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -60,13 +60,13 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="vjg-MW-LIQ" kind="push" identifier="ShowGamesForTeam" id="7bt-Gi-aLD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Teams" id="CEw-oE-ANJ"/>
-                    <connections>
-                        <segue destination="vjg-MW-LIQ" kind="push" id="gKx-BG-zB9"/>
-                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="574" y="-101"/>
