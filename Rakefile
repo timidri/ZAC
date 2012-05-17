@@ -7,8 +7,7 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'ZAC'
   app.pods do
-#    dependency 'JSONKit'
-    #dependency 'GDataXML-HTML'
+ #   dependency 'JSONKit'
     dependency 'GData'
   end
 end

@@ -7,6 +7,7 @@ class AppDelegate
     @window.rootViewController = rootViewController
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
+    ZACFactory.fetchFromGoogle
     true
   end
 end
