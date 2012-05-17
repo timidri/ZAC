@@ -24,7 +24,7 @@
                     <tabBarItem key="tabBarItem" title="Kaart" id="gX5-ch-13e"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="420" y="477"/>
+            <point key="canvasLocation" x="160" y="527"/>
         </scene>
         <!--Teams Controller - Teams-->
         <scene sceneID="guG-w6-A6l">
