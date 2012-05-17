@@ -4,6 +4,7 @@ class ZACTeamsController < UITableViewController
   end
   
   def tableView(tableView, numberOfRowsInSection:section)
+    puts("numberOfRowsInSection: #{Team.all.size}")
     Team.all.size
   end
   

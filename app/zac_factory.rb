@@ -2,28 +2,20 @@ class ZACFactory
   
   @@spreadsheetService = nil
   
-	def self.fetchFromGoogle
+	def self.startFetchingFromGoogle(sender)
     # link = 'https://docs.google.com/spreadsheet/ccc?key=0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE' 
     link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
     # link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/private/full'
     # key = '0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE'
     feedURL = NSURL.URLWithString(link)
     # feedURL = NSURL.URLWithString(KGDataGoogleSpreadsheetsPrivateFullFeed)
-    ticket = spreadsheetService.fetchFeedWithURL(feedURL, delegate:self,
+    ticket = spreadsheetService.fetchFeedWithURL(feedURL, delegate:sender,
                         didFinishSelector:'feedTicket:finishedWithFeed:error:')
   end
 
-	def self.feedTicket(ticket, finishedWithFeed:feed, error:error)
-    @@feed = feed
-    if error 
-        puts(error)
-    end
-    self.parseFeed
-  end
-  
-  def self.parseFeed
+  def self.parseFeed(feed)
     @@gamesArray = []
-    @@feed.entries.each do |entry|
+    feed.entries.each do |entry|
       @@entryArray = entry.content.stringValue.split(', ')
       puts("entryArray: #{@@entryArray}")
       hash = {}

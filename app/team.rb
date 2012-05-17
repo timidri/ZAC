@@ -2,25 +2,38 @@ class Team
   attr_reader :name
   attr_reader :games
 
-  def initialize name 
+  @@all = []
+  
+  def initialize name
     @name  = name
-    @games = ['game 1', 'game 2', 'game 3', 'game 4']
+    @games = []
+    @@all << self
   end
 
-  @@all = [
-    Team.new('foo'),
-    Team.new('bar'),
-    Team.new('joachim'),
-    Team.new('dimitri')
-  ]
-
+  def addGame game
+    @games << game
+  end
+  
+  def self.findOrCreate teamName, game
+    team = find_by_name teamName
+    unless team
+      team = Team.new teamName
+    end
+    team.addGame game
+    team
+  end
+  
   def self.all
     @@all
   end
 
   def self.find_by_name teamname
-    @@all.find(:name => @teamname) do |team|
-      team
+    puts("@@all: #{@@all}")
+    puts("teamname: #{teamname}")
+    if @@all.count > 0
+      @@all.find do |team|
+        team.name == teamname
+      end
     end
   end
 end

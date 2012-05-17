@@ -3,11 +3,22 @@ class AppDelegate
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     # @window.rootViewController = NSBundle.mainBundle.loadNibNamed('ZAC', owner:self, options:nil).first
     storyboard = UIStoryboard.storyboardWithName("ZAC", bundle:nil)
-    rootViewController = storyboard.instantiateViewControllerWithIdentifier("Main")
+    rootViewController = storyboard.instantiateViewControllerWithIdentifier("SplashScreen")
     @window.rootViewController = rootViewController
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
-    ZACFactory.fetchFromGoogle
+    ZACFactory.startFetchingFromGoogle(self)
     true
   end
+  
+  def feedTicket(ticket, finishedWithFeed:feed, error:error)
+    ZACFactory.parseFeed(feed)
+    if error 
+        puts(error)
+    end
+    puts("going to perform segue")
+    @window.rootViewController.performSegueWithIdentifier("GoToMainScreen", sender:nil)
+  end
+  
+	
 end

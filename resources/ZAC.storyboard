@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zWY-pz-Hch">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k32-Jd-00t">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
@@ -77,6 +77,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLV-FX-xWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="fTm-m4-37t" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Rooster" id="cgC-gz-95Z"/>
+                    <navigationItem key="navigationItem" id="qd6-9n-YXC"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wqh-FD-6kw">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -87,11 +88,54 @@
             </objects>
             <point key="canvasLocation" x="174" y="-101"/>
         </scene>
-        <!--Tab Bar Controller - Main-->
+        <!--View Controller-->
+        <scene sceneID="p3v-iQ-N6V">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZKS-x1-Ky3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="SplashScreen" id="k32-Jd-00t" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PI8-kl-dSu">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="Abs-YA-lR3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.67374320652173914" green="0.5102124890491756" blue="0.29076213427109299" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rooster laden..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="JSa-GN-q7e">
+                                <rect key="frame" x="77" y="347" width="143" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ZAC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nZW-j1-Lv4">
+                                <rect key="frame" x="77" y="77" width="143" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="cey-KH-MFZ">
+                                <rect key="frame" x="130" y="211" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.67374320649999997" green="0.51021248900000005" blue="0.29076213429999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="zWY-pz-Hch" kind="modal" identifier="GoToMainScreen" modalTransitionStyle="flipHorizontal" id="uT3-0f-3fC"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-384" y="-253"/>
+        </scene>
+        <!--Tab Bar Controller-->
         <scene sceneID="MfE-1E-PLx">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3t5-gg-4BC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController storyboardIdentifier="Main" title="Main" definesPresentationContext="YES" id="zWY-pz-Hch" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="" definesPresentationContext="YES" id="zWY-pz-Hch" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="2GK-sn-d2Z"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Dv3-tU-Gxc">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -104,7 +148,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="-385" y="215"/>
+            <point key="canvasLocation" x="-291" y="356"/>
         </scene>
         <!--Games Controller - Wedstrijden-->
         <scene sceneID="HCn-oH-wio">

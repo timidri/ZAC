@@ -4,7 +4,7 @@ class ZACGamesController < UITableViewController
   end
 
   def teamname= teamname
-    @team = Team.find_by_name @teamname
+    @team = Team.find_by_name teamname
   end
   
   def tableView(tableView, numberOfRowsInSection:section)
@@ -19,7 +19,7 @@ class ZACGamesController < UITableViewController
     # cell.detailTextLabel.text = indexPath.row.to_s
 
     game = @team.games[indexPath.row]
-    cell.textLabel.text = game
+    cell.textLabel.text = game.field
     cell
   end
   
