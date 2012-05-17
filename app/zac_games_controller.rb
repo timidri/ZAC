@@ -1,25 +1,29 @@
-class ZACTeamsController < UITableViewController
+class ZACGamesController < UITableViewController
   def viewDidLoad
     puts("#{self.class} viewDidLoad")
   end
+
+  def teamname= teamname
+    @team = Team.find_by_name @teamname
+  end
   
   def tableView(tableView, numberOfRowsInSection:section)
-    Team.all.size
+    puts "game count: #{@team.games.count}"
+    @team.games.count
   end
   
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     puts("cellForRowAtIndexPath: #{indexPath.row}")
-    cell = tableView.dequeueReusableCellWithIdentifier("TeamCell")
+    cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
     # cell.textLabel.text = indexPath.row.to_s
     # cell.detailTextLabel.text = indexPath.row.to_s
-    team = Team.all[indexPath.row]
-    cell.textLabel.text = team.name
+
+    game = @team.games[indexPath.row]
+    cell.textLabel.text = game
     cell
   end
   
   def prepareForSegue(segue, sender:sender)
-    destinationController = segue.destinationViewController
-    destinationController.teamname = sender.textLabel.text
     puts("prepareForSegue, segue=#{segue.identifier}, sender=#{sender.textLabel.text}")
   end
 end
