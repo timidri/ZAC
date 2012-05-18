@@ -1,20 +1,27 @@
 class Team
   attr_reader :name
-  attr_reader :games
 
   @@all = []
   
   def initialize name
     @name  = name
     @games = []
+    @gamesSorted = false
     @@all << self
   end
 
   def addGame game
     @games << game
-    # puts ("games before sort: #{@games}")
-    @games.sort! { |a,b| a.datetime <=> b.datetime }
-    # puts ("games after sort: #{@games}")
+    @gamesSorted = false
+  end
+  
+  def games
+    unless @gamesSorted
+      puts("Game: sorting games")
+      @games.sort! { |a,b| a.datetime <=> b.datetime }
+      @gamesSorted = true
+    end
+    @games
   end
   
   def self.findOrCreate teamName, game
