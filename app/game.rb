@@ -21,11 +21,7 @@ class Game
     @@all
   end
 
-  # All = [
-  #   Game.new('foo', 'bar', '2012-05-01', '10:30' , 'bla'),
-  #   Game.new('foo', 'bar', '2012-05-01', '10:30' , 'bla'),
-  #   Game.new('foo', 'bar', '2012-05-01', '10:30' , 'bla'),
-  #   Game.new('foo', 'bar', '2012-05-01', '10:30' , 'bla'),
-  # ]
-
+  def to_s
+    "#{date}-#{time}-#{field}, #{team1}vs#{team2}"
+  end
 end

@@ -11,14 +11,8 @@ class AppDelegate
     true
   end
   
-  def feedTicket(ticket, finishedWithFeed:feed, error:error)
-    ZACFactory.parseFeed(feed)
-    if error 
-        puts(error)
-    end
-    puts("going to perform segue")
+  def factoryFinishedFetching
+    # puts("going to perform segue")
     @window.rootViewController.performSegueWithIdentifier("GoToMainScreen", sender:nil)
   end
-  
-	
 end
