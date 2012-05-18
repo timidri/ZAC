@@ -1,10 +1,16 @@
 class ZACGamesController < UITableViewController
+  
+  def initalize
+  end
+  
   def viewDidLoad
     # puts("#{self.class} viewDidLoad")
+    @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("E dd-MM-yyyy HH:mm")
   end
 
   def teamname= teamname
     @team = Team.find_by_name teamname
+    navigationItem.title = "Wedstrijden: #{teamname}"
   end
   
   def tableView(tableView, numberOfRowsInSection:section)
@@ -16,8 +22,8 @@ class ZACGamesController < UITableViewController
     # puts("cellForRowAtIndexPath: #{indexPath.row}")
     cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
     game = @team.games[indexPath.row]
-    cell.textLabel.text = "#{game.date} #{game.time}"
-    cell.detailTextLabel.text = game.field
+    cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
+    cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)} veld: #{game.field}"
     cell
   end
   

@@ -1,8 +1,13 @@
 class ZACTeamsController < UITableViewController
   def viewDidLoad
-    # puts("#{self.class} viewDidLoad")
+    puts("#{self.class} viewDidLoad")
   end
-  
+
+  def viewDidAppear(animated)
+    puts("#{self.class} viewDitAppear, animated:#{animated}")
+    puts("presenting: #{presentingViewController.class}, presented: #{presentedViewController.class}")
+  end
+    
   def tableView(tableView, numberOfRowsInSection:section)
     # puts("numberOfRowsInSection: #{Team.all.size}")
     Team.all.size
@@ -18,7 +23,16 @@ class ZACTeamsController < UITableViewController
   
   def prepareForSegue(segue, sender:sender)
     destinationController = segue.destinationViewController
-    destinationController.teamname = sender.textLabel.text
-    # puts("prepareForSegue, segue=#{segue.identifier}, sender=#{sender.textLabel.text}")
+    clickedTeamName = sender.textLabel.text
+    destinationController.teamname = clickedTeamName
+    defaults = NSUserDefaults.standardUserDefaults
+    defaultTeam = defaults.stringForKey("defaultTeam")
+    puts("defaults: #{defaultTeam}")
+    if clickedTeamName != defaultTeam
+      defaults.setObject(clickedTeamName, forKey:"defaultTeam")
+      puts("defaults: synchronizing")
+      defaults.synchronize
+    end
+    puts("prepareForSegue, segue=#{segue.identifier}, sender=#{sender.textLabel.text}")
   end
 end

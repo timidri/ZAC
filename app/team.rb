@@ -12,9 +12,9 @@ class Team
 
   def addGame game
     @games << game
-    puts ("games before sort: #{@games}")
-    @games.sort! { |a,b| a.date + a.time <=> b.date + b.time }
-    puts ("games after sort: #{@games}")
+    # puts ("games before sort: #{@games}")
+    @games.sort! { |a,b| a.datetime <=> b.datetime }
+    # puts ("games after sort: #{@games}")
   end
   
   def self.findOrCreate teamName, game
@@ -39,6 +39,6 @@ class Team
   end
   
   def to_s
-    "T #{name}"
+    @name
   end
 end

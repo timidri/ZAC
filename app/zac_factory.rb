@@ -1,6 +1,7 @@
 class ZACFactory	
   
   @@spreadsheetService = nil
+  @@dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
   
 	def self.startFetchingFromGoogle(sender)
 	  @@delegate = sender
@@ -49,7 +50,9 @@ class ZACFactory
   def self.parser(parser, didEndElement:elementName, namespaceURI:namespaceURI, qualifiedName:qualifiedName)
     # puts "end - elname: #{elementName}, qname: #{qualifiedName}" 
     if elementName == "entry"
-      Game.new(@@rowHash["team1"], @@rowHash["team2"], @@rowHash["datum"], @@rowHash["tijd"], @@rowHash["veld"])
+      dateTime = @@dateFormatter.dateFromString("#{@@rowHash["datum"]} #{@@rowHash["tijd"]}")
+      Game.new(@@rowHash["team1"], @@rowHash["team2"], dateTime, @@rowHash["veld"])
+      # Game.new(@@rowHash["team1"], @@rowHash["team2"], @@rowHash["datum"], @@rowHash["tijd"], @@rowHash["veld"])
       @@entries << @@rowHash
       @@inEntry = false
     elsif elementName == "title" && @@inEntry
