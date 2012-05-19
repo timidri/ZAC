@@ -33,6 +33,6 @@ class ZACTeamsController < UITableViewController
     #   puts("defaults: synchronizing")
     #   defaults.synchronize
     # end
-    puts("prepareForSegue, segue=#{segue.identifier}, sender=#{sender.textLabel.text}")
+    # puts("prepareForSegue, segue=#{segue.identifier}, sender=#{sender.textLabel.text}")
   end
 end

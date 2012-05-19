@@ -1,31 +1,35 @@
 class ZAC
   
   attr_reader :games, :teams
-  
-  @@instance = ZAC.new
-  
-  @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
-  
+      
   def initialize
+    # puts "ZAC initialize"
+    @receivedData = NSMutableData.new
+    @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
     link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
     feedURL = NSURL.URLWithString(link)
     @request = NSURLRequest.requestWithURL(feedURL)
-    @receivedData = NSMutableData.new
-    @connection = NSURLConnection.connectionWithRequest(request, delegate:self)
+    p @connection
+  end
+  
+  @@instance = ZAC.new
+  
+	def fetch(sender)
+	  # puts "fetch"
     @games = []
     @teams = []
     @entries = []
-  end
-  
-	def fetch(sender)
 	  @delegate = sender
+    @connection = NSURLConnection.connectionWithRequest(@request, delegate:self)
     @connection.start
   end
   
   def find_or_create_team teamName
     team = find_team_by_name teamName
+    # puts("find_or_create #{teamName} => #{team}")
     unless team
       team = Team.new teamName
+      @teams << team
     end
     team
   end
@@ -37,10 +41,12 @@ class ZAC
   end
   
   def connection(connection, didReceiveResponse:response)
+    # puts ("connection didReceiveResponse")
     @receivedData.setLength(0)
   end
 
   def connection(connection, didReceiveData:data)
+    # puts ("connection didReceiveData")
     @receivedData.appendData(data)
   end
 
@@ -80,7 +86,6 @@ class ZAC
       team1.addGame(game)
       team2.addGame(game)
       @games << game
-      @teams << team1 << team2      
       @entries << @rowHash
       @inEntry = false
     elsif elementName == "title" && @inEntry
@@ -106,7 +111,8 @@ class ZAC
   end
   
   def self.instance
-      return @@instance
+    # puts "self.instance: #{@@instance}"
+    @@instance
   end
   
   private_class_method :new

@@ -12,7 +12,7 @@ class Game
     @team2 = team1
     @datetime  = datetime
     @field = field
-    @@all << self
+#    @@all << self
   end
 
   # def self.all

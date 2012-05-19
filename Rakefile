@@ -8,7 +8,7 @@ Motion::Project::App.setup do |app|
   app.name = 'ZAC'
   
   app.info_plist['CFBundleShortVersionString'] = '0.8'
-  app.info_plist['CFBundleVersion'] = '3'
+  app.info_plist['CFBundleVersion'] = '4'
 
   app.codesign_certificate = 'iPhone Developer: Joachim Nolten (PNCKXWS2NR)'
 
@@ -17,9 +17,6 @@ Motion::Project::App.setup do |app|
   app.provisioning_profile = '/Users/joachim/ZAC_distribution.mobileprovision'
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
-  # app.pods do
-  #   dependency 'GData'
-  # end
 
   app.icons = %w{ icon.png }
 
