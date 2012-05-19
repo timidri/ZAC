@@ -17,4 +17,6 @@ Motion::Project::App.setup do |app|
   # app.pods do
   #   dependency 'GData'
   # end
+
+  app.icons = %w{ icon.png }
 end
