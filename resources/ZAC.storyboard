@@ -54,7 +54,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="vjg-MW-LIQ" kind="push" identifier="ShowGamesForTeam" id="7bt-Gi-aLD"/>
+                                    <segue destination="yzj-lX-Zo8" kind="push" id="hlR-Dv-7Ax"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -63,6 +63,60 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="574" y="-101"/>
+        </scene>
+        <!--Games Controller - Wedstrijden-->
+        <scene sceneID="mQN-zj-ZYE">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pz2-cC-Q4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="yzj-lX-Zo8" customClass="ZACGamesController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lqU-4v-b1G">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" autoresizesSubviews="NO" tag="1" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="DNM-BV-BSp">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Komende" width="80"/>
+                                <segment title="Alle"/>
+                            </segments>
+                        </segmentedControl>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GameCell" textLabel="LYd-5y-seV" detailTextLabel="xTz-cE-XLZ" style="IBUITableViewCellStyleSubtitle" id="jQC-vx-xtZ">
+                                <rect key="frame" x="0.0" y="52" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LYd-5y-seV">
+                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xTz-cE-XLZ">
+                                            <rect key="frame" x="10" y="24" width="36" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yzj-lX-Zo8" id="5QA-Jo-XSa"/>
+                            <outlet property="delegate" destination="yzj-lX-Zo8" id="AC7-2a-9nW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Wedstrijden" id="G4k-mN-He8"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="980" y="-101"/>
         </scene>
         <!--Navigation Controller - Rooster-->
         <scene sceneID="RY7-WT-s2u">
@@ -133,52 +187,6 @@
                 </tabBarController>
             </objects>
             <point key="canvasLocation" x="-291" y="356"/>
-        </scene>
-        <!--Games Controller - Wedstrijden-->
-        <scene sceneID="HCn-oH-wio">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Arp-cW-dBT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="vjg-MW-LIQ" customClass="ZACGamesController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Jbn-Uo-vAw">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GameCell" textLabel="AtD-qO-vQz" detailTextLabel="YyX-ng-QfS" style="IBUITableViewCellStyleSubtitle" id="Z1M-Cc-uhh">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AtD-qO-vQz">
-                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YyX-ng-QfS">
-                                            <rect key="frame" x="10" y="24" width="36" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="vjg-MW-LIQ" id="995-dQ-zPB"/>
-                            <outlet property="delegate" destination="vjg-MW-LIQ" id="PCQ-xn-Fy2"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Wedstrijden" id="yjS-q4-MGA"/>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="980" y="-101"/>
         </scene>
     </scenes>
     <resources>

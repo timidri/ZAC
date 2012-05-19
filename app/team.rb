@@ -8,6 +8,7 @@ class Team
     @games = []
     @gamesSorted = false
     @@all << self
+    @now = Time.new
   end
 
   def addGame game
@@ -22,6 +23,10 @@ class Team
       @gamesSorted = true
     end
     @games
+  end
+  
+  def upcomingGames
+    games.find_all { |game| game.datetime >= @now }
   end
   
   def self.findOrCreate teamName, game

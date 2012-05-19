@@ -6,7 +6,5 @@ require 'motion-cocoapods'
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'ZAC'
-  # app.pods do
-  #   dependency 'GData'
-  # end
+  app.icons = %w{ icon.png }
 end
