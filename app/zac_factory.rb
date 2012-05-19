@@ -1,73 +1,101 @@
-class ZACFactory	
+class ZAC
   
-  @@spreadsheetService = nil
-  @@dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
+  attr_reader :games, :teams
   
-	def self.startFetchingFromGoogle(sender)
-	  @@delegate = sender
+  @@instance = ZAC.new
+  
+  @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
+  
+  def initialize
     link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
-    @@receivedData = NSMutableData.new
     feedURL = NSURL.URLWithString(link)
-    request = NSURLRequest.requestWithURL(feedURL)
-    connection = NSURLConnection.connectionWithRequest(request, delegate:self)
-    connection.start
+    @request = NSURLRequest.requestWithURL(feedURL)
+    @receivedData = NSMutableData.new
+    @connection = NSURLConnection.connectionWithRequest(request, delegate:self)
+    @games = []
+    @teams = []
+    @entries = []
+  end
+  
+	def fetch(sender)
+	  @delegate = sender
+    @connection.start
+  end
+  
+  def find_or_create_team teamName
+    team = find_team_by_name teamName
+    unless team
+      team = Team.new teamName
+    end
+    team
+  end
+  
+  def find_team_by_name teamname
+    @teams.find do |team|
+      team.name == teamname
+    end
+  end
+  
+  def connection(connection, didReceiveResponse:response)
+    @receivedData.setLength(0)
   end
 
-  def self.connection(connection, didReceiveResponse:response)
-    @@receivedData.setLength(0)
+  def connection(connection, didReceiveData:data)
+    @receivedData.appendData(data)
   end
 
-  def self.connection(connection, didReceiveData:data)
-    @@receivedData.appendData(data)
-  end
-
-  def self.connection(connection, didFailWithError:error)
+  def connection(connection, didFailWithError:error)
     # puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
   end
 
-  def self.connectionDidFinishLoading(connection)
-    # puts("Succeeded! Received bytes of data: "  + @@receivedData.length.description);
-    parser = NSXMLParser.alloc.initWithData(@@receivedData)
+  def connectionDidFinishLoading(connection)
+    # puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
+    parser = NSXMLParser.alloc.initWithData(@receivedData)
     parser.setDelegate(self)
     parser.parse
-    @@delegate.factoryFinishedFetching
+    @delegate.factoryFinishedFetching
   end
 
-  def self.parserDidStartDocument(parser)
-    @@entries = []
-    @@inEntry = false
+  def parserDidStartDocument(parser)
+    @entries = []
+    @inEntry = false
   end
 
-  def self.parser(parser, didStartElement:elementName, namespaceURI:namespaceURI, qualifiedName:qualifiedName, attributes:attributeDict)
+  def parser(parser, didStartElement:elementName, namespaceURI:namespaceURI, qualifiedName:qualifiedName, attributes:attributeDict)
     # puts "start - elname: #{elementName}, qname: #{qualifiedName}" 
-    @@currentValue = ""
+    @currentValue = ""
     if elementName == "entry"
-      @@inEntry = true
-      @@rowHash = {}
+      @inEntry = true
+      @rowHash = {}
     end
   end
 
-  def self.parser(parser, didEndElement:elementName, namespaceURI:namespaceURI, qualifiedName:qualifiedName)
+  def parser(parser, didEndElement:elementName, namespaceURI:namespaceURI, qualifiedName:qualifiedName)
     # puts "end - elname: #{elementName}, qname: #{qualifiedName}" 
     if elementName == "entry"
-      dateTime = @@dateFormatter.dateFromString("#{@@rowHash["datum"]} #{@@rowHash["tijd"]}")
-      Game.new(@@rowHash["team1"], @@rowHash["team2"], dateTime, @@rowHash["veld"])
-      # Game.new(@@rowHash["team1"], @@rowHash["team2"], @@rowHash["datum"], @@rowHash["tijd"], @@rowHash["veld"])
-      @@entries << @@rowHash
-      @@inEntry = false
-    elsif elementName == "title" && @@inEntry
-      @@rowHash['datum'] = @@currentValue
-    elsif elementName == "content" && @@inEntry
-      @@rowHash = @@rowHash.merge(parseContents(@@currentValue))
+      dateTime = @dateFormatter.dateFromString("#{@rowHash["datum"]} #{@rowHash["tijd"]}")
+      team1 = find_or_create_team(@rowHash["team1"])
+      team2 = find_or_create_team(@rowHash["team2"])
+      game = Game.new(team1, team2, dateTime, @rowHash["veld"])
+      team1.addGame(game)
+      team2.addGame(game)
+      @games << game
+      @teams << team1 << team2      
+      @entries << @rowHash
+      @inEntry = false
+    elsif elementName == "title" && @inEntry
+      @rowHash['datum'] = @currentValue
+    elsif elementName == "content" && @inEntry
+      @rowHash = @rowHash.merge(parseContents(@currentValue))
     end
   end
 
-  def self.parser(parser, foundCharacters:string)
-    @@currentValue += string
-    # puts "currentValue: #{@@currentValue}"
+  def parser(parser, foundCharacters:string)
+    @currentValue += string
+    # puts "currentValue: #{@currentValue}"
   end
   
-  def self.parseContents(string)
+  def parseContents(string)
     hash = {}
     entryArray = string.split(', ')
     entryArray.each do |item|
@@ -76,4 +104,10 @@ class ZACFactory
     end
     hash
   end
+  
+  def self.instance
+      return @@instance
+  end
+  
+  private_class_method :new
 end

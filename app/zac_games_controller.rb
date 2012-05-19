@@ -28,13 +28,13 @@ class ZACGamesController < UITableViewController
   end
   
   def teamname= teamname
-    @team = Team.find_by_name teamname
+    @team = ZAC.instance.find_team_by_name teamname
     navigationItem.title = "Wedstrijden: #{teamname}"
     updateGamesSelection(@currentSelection)
   end
   
   def tableView(tableView, numberOfRowsInSection:section)
-    @games.count
+      @games.count
   end
   
   def tableView(tableView, cellForRowAtIndexPath:indexPath)

@@ -1,13 +1,13 @@
 class Team
   attr_reader :name
 
-  @@all = []
+  # @@all = []
   
   def initialize name
     @name  = name
     @games = []
     @gamesSorted = false
-    @@all << self
+    # @@all << self
   end
 
   def addGame game
@@ -37,9 +37,9 @@ class Team
     team
   end
   
-  def self.all
-    @@all
-  end
+  # def self.all
+  #   @@all
+  # end
 
   def self.find_by_name teamname
     if @@all.count > 0

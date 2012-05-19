@@ -10,13 +10,13 @@ class ZACTeamsController < UITableViewController
     
   def tableView(tableView, numberOfRowsInSection:section)
     # puts("numberOfRowsInSection: #{Team.all.size}")
-    Team.all.size
+    ZAC.instance.teams.size
   end
   
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     # puts("cellForRowAtIndexPath: #{indexPath.row}")
     cell = tableView.dequeueReusableCellWithIdentifier("TeamCell")
-    team = Team.all[indexPath.row]
+    team = ZAC.instance.teams[indexPath.row]
     cell.textLabel.text = team.name
     cell
   end
