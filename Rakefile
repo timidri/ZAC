@@ -1,12 +1,14 @@
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
 require 'rubygems'
-require 'motion-cocoapods'
 require 'motion-testflight'
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'ZAC'
+  
+  app.info_plist['CFBundleShortVersionString'] = '0.8'
+  app.info_plist['CFBundleVersion'] = '3'
 
   app.codesign_certificate = 'iPhone Developer: Joachim Nolten (PNCKXWS2NR)'
 
