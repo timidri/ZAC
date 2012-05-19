@@ -22,7 +22,7 @@ class ZACFactory
   end
 
   def self.connection(connection, didFailWithError:error)
-    puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
+    # puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
   end
 
   def self.connectionDidFinishLoading(connection)

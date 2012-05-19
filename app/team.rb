@@ -17,7 +17,7 @@ class Team
   
   def games
     unless @gamesSorted
-      puts("Game: sorting games")
+      # puts("Game: sorting games")
       @games.sort! { |a,b| a.datetime <=> b.datetime }
       @gamesSorted = true
     end
