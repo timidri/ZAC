@@ -21,20 +21,25 @@ class ZAC
     @refreshing = true
     @games = []
     @teams = []
-    @delegate = sender
+    @delegate = sender    
     link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
     feedURL = NSURL.URLWithString(link)
     # using default caching policy and a reduced timeout interval of 10 seconds
-    
-    # 
     # NSURLRequestReturnCacheDataElseLoad
     @request = NSURLRequest.requestWithURL(feedURL, cachePolicy:NSURLRequestUseProtocolCachePolicy, timeoutInterval:10)
     @connection = NSURLConnection.connectionWithRequest(@request, delegate:self)
-    # The line below is unnecessary if the line above is used;
-    # the connection is automatically started in this case.
-    # @connection.start
   end
   
+  def refreshFromCache(sender)
+    path = NSBundle.mainBundle.pathForResource("rooster", ofType:"xml")
+    # puts("path = #{path}")
+    data = NSFileManager.defaultManager.contentsAtPath(path)
+    # puts("data = #{data}")
+    parseData(data)
+    @refreshing = false
+    @delegate.factoryFinishedRefreshing
+  end
+    
   def find_or_create_team teamName
     team = find_team_by_name teamName
     # puts("find_or_create #{teamName} => #{team}")
@@ -51,6 +56,14 @@ class ZAC
     end
   end
   
+  def parseData(data)
+    parser = NSXMLParser.alloc.initWithData(data)
+    parser.setDelegate(self)
+    parser.parse
+  end
+  
+  # connection delegate methods
+  
   def connection(connection, didReceiveResponse:response)
     # puts ("connection didReceiveResponse")
     @receivedData.setLength(0)
@@ -63,8 +76,8 @@ class ZAC
 
   def connection(connection, didFailWithError:error)
     puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
-    cachedResponse = NSURLCache.sharedURLCache.cachedResponseForRequest(@request)
-    p cachedResponse
+    # cachedResponse = NSURLCache.sharedURLCache.cachedResponseForRequest(@request)
+    @delegate.factoryFailedRefreshing
   end
 
   def connection(connection, willCacheResponse:cachedResponse)
@@ -74,14 +87,14 @@ class ZAC
   
   def connectionDidFinishLoading(connection)
     puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
-    parser = NSXMLParser.alloc.initWithData(@receivedData)
-    parser.setDelegate(self)
-    parser.parse
+    parseData(@receivedData)
     @refreshing = false
     puts("ZAC: finished refreshing")
     @delegate.factoryFinishedRefreshing
   end
-
+  
+  # parser delegate methods
+  
   def parserDidStartDocument(parser)
     @entries = []
     @inEntry = false
