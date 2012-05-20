@@ -6,16 +6,22 @@ class ZAC
     # puts "ZAC initialize"
     @receivedData = NSMutableData.new
     @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
+    @refreshing = false
   end
   
   @@instance = ZAC.new
   
-	def fetch(sender)
-	  # puts "fetch"
+  def refresh(sender)
+    # puts "refresh"
+    if @refreshing
+      puts ("ZAC refresh: already refreshing, ignoring refresh")
+      return
+    end
+    puts ("ZAC refreshing")
+    @refreshing = true
     @games = []
     @teams = []
-    @entries = []
-	  @delegate = sender
+    @delegate = sender
     link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
     feedURL = NSURL.URLWithString(link)
     # using default caching policy and a reduced timeout interval of 10 seconds
@@ -67,11 +73,13 @@ class ZAC
   end
   
   def connectionDidFinishLoading(connection)
-    # puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
+    puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
     parser = NSXMLParser.alloc.initWithData(@receivedData)
     parser.setDelegate(self)
     parser.parse
-    @delegate.factoryFinishedFetching
+    @refreshing = false
+    puts("ZAC: finished refreshing")
+    @delegate.factoryFinishedRefreshing
   end
 
   def parserDidStartDocument(parser)

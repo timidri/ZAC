@@ -10,7 +10,7 @@ class Game
   def initialize team1, team2, datetime, field
     @team1 = team1
     @team2 = team2
-    @datetime  = datetime
+    @datetime = datetime
     @field = field
 #    @@all << self
   end

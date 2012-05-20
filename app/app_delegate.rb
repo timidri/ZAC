@@ -7,11 +7,11 @@ class AppDelegate
     @window.rootViewController = rootViewController
     @window.rootViewController.wantsFullScreenLayout = true
     @window.makeKeyAndVisible
-    ZAC.instance.fetch(self)
+    ZAC.instance.refresh(self)
     true
   end
   
-  def factoryFinishedFetching
+  def factoryFinishedRefreshing
     # puts("going to perform segue")
     @window.rootViewController.performSegueWithIdentifier("GoToMainScreen", sender:nil)
   end
