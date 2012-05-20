@@ -21,7 +21,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Kaart" id="gX5-ch-13e"/>
+                    <tabBarItem key="tabBarItem" title="Kaart" image="map-icon.png" id="gX5-ch-13e"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="160" y="527"/>
@@ -123,7 +123,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLV-FX-xWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="fTm-m4-37t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Rooster" id="cgC-gz-95Z"/>
+                    <tabBarItem key="tabBarItem" title="Rooster" image="calendar-icon.png" id="cgC-gz-95Z"/>
                     <navigationItem key="navigationItem" id="qd6-9n-YXC"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wqh-FD-6kw">
                         <autoresizingMask key="autoresizingMask"/>
@@ -190,7 +190,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar-icon.png" width="23" height="25"/>
         <image name="kaart.jpeg" width="543" height="767"/>
+        <image name="map-icon.png" width="26" height="21"/>
         <image name="zac.png" width="600" height="448"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
