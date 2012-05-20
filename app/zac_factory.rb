@@ -62,7 +62,7 @@ class ZAC
   end
 
   def connection(connection, willCacheResponse:cachedResponse)
-    puts("cachedResponse: #{cachedResponse})
+    puts("cachedResponse: #{cachedResponse}")
     return cachedResponse
   end
   
