@@ -6,10 +6,6 @@ class ZAC
     # puts "ZAC initialize"
     @receivedData = NSMutableData.new
     @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
-    link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
-    feedURL = NSURL.URLWithString(link)
-    @request = NSURLRequest.requestWithURL(feedURL)
-    p @connection
   end
   
   @@instance = ZAC.new
@@ -20,8 +16,17 @@ class ZAC
     @teams = []
     @entries = []
 	  @delegate = sender
+    link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
+    feedURL = NSURL.URLWithString(link)
+    # using default caching policy and a reduced timeout interval of 10 seconds
+    
+    # 
+    # NSURLRequestReturnCacheDataElseLoad
+    @request = NSURLRequest.requestWithURL(feedURL, cachePolicy:NSURLRequestUseProtocolCachePolicy, timeoutInterval:10)
     @connection = NSURLConnection.connectionWithRequest(@request, delegate:self)
-    @connection.start
+    # The line below is unnecessary if the line above is used;
+    # the connection is automatically started in this case.
+    # @connection.start
   end
   
   def find_or_create_team teamName
@@ -51,9 +56,16 @@ class ZAC
   end
 
   def connection(connection, didFailWithError:error)
-    # puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
+    puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
+    cachedResponse = NSURLCache.sharedURLCache.cachedResponseForRequest(@request)
+    p cachedResponse
   end
 
+  def connection(connection, willCacheResponse:cachedResponse)
+    puts("cachedResponse: #{cachedResponse})
+    return cachedResponse
+  end
+  
   def connectionDidFinishLoading(connection)
     # puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
     parser = NSXMLParser.alloc.initWithData(@receivedData)
