@@ -15,6 +15,8 @@ Motion::Project::App.setup do |app|
   app.info_plist['CFBundleShortVersionString'] = version[0..1].join('.')
   app.info_plist['CFBundleVersion'] = version[2]
 
+  app.entitlements['get-task-allow'] = false
+
   app.codesign_certificate = 'iPhone Developer: Joachim Nolten (PNCKXWS2NR)'
 
   app.identifier = '99Z3JG6WQC.org.nolten.zac'
