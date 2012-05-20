@@ -30,5 +30,9 @@ Motion::Project::App.setup do |app|
   app.testflight.team_token = '2ef31a808a4e76475d33e11259b02e73_OTE3NTAyMDEyLTA1LTE5IDExOjA4OjA4LjcwOTg3OQ'
 end
 
-Rake::Task.new(:joachim) do |t|
+desc "Deploy"
+task :deploy do
+  Rake::Task['clean'].invoke
+  # Rake::Task['version:bump:revision'].invoke
+  Rake::Task['testflight:submit'].invoke ENV['notes']
 end

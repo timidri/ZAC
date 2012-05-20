@@ -11,6 +11,12 @@ class ZACGamesController < UITableViewController
     @switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
     @currentSelection = SHOW_UPCOMING_GAMES
     # ZAC.instance.refresh self
+
+    image = UIImage.imageNamed("back.jpeg")
+    imageView = UIImageView.alloc.initWithImage(image)
+    self.tableView.setBackgroundView(imageView)
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone
+    tableView.rowHeight = 100
   end
 
   def factoryFinishedRefreshing
@@ -35,7 +41,7 @@ class ZACGamesController < UITableViewController
   
   def teamname= teamname
     @team = ZAC.instance.find_team_by_name teamname
-    navigationItem.title = "Wedstrijden: #{teamname}"
+    navigationItem.title = teamname
     updateGamesSelection(@currentSelection)
   end
   
@@ -48,7 +54,9 @@ class ZACGamesController < UITableViewController
     cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
     game = @games[indexPath.row]
     cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
-    cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)} veld: #{game.field}"
+    cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}"
+    cell.contentView.backgroundColor = UIColor.colorWithWhite(0.0, alpha: 0.8)
+
     cell
   end
   
