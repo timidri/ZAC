@@ -10,6 +10,12 @@ class ZACGamesController < UITableViewController
     @switch = self.view.viewWithTag(SWITCH_TAG)
     @switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
     @currentSelection = SHOW_UPCOMING_GAMES
+    ZAC.instance.fetch self
+  end
+
+  def factoryFinishedFetching
+    puts "reloading games"
+    self.view.reloadData
   end
 
   def switchClicked(sender)

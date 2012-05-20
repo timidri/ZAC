@@ -3,9 +3,15 @@ class ZACTeamsController < UITableViewController
     # puts("#{self.class} viewDidLoad")
   end
 
+  def factoryFinishedFetching
+    puts "reloading teams..."
+    self.view.reloadData
+  end
+
   def viewDidAppear(animated)
     # puts("#{self.class} viewDitAppear, animated:#{animated}")
     # puts("presenting: #{presentingViewController.class}, presented: #{presentedViewController.class}")
+    ZAC.instance.fetch self
   end
     
   def tableView(tableView, numberOfRowsInSection:section)
