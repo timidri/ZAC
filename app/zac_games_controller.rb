@@ -13,7 +13,7 @@ class ZACGamesController < UITableViewController
     @currentSelection = SHOW_UPCOMING_GAMES
     # ZAC.instance.refresh self
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone
-    tableView.rowHeight = 100
+    tableView.rowHeight = 80
     tablestyling
   end
 
@@ -54,8 +54,6 @@ class ZACGamesController < UITableViewController
     cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
     cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}"
     cellstyling cell
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone
-    tableView.rowHeight = 100
     cell
   end
   
