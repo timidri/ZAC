@@ -1,6 +1,9 @@
 TODO
 ==========
 
+- improve refreshing content
+- consolidate layout code
+
 DONE
 ==========
 
