@@ -12,12 +12,11 @@ class ZAC
   @@instance = ZAC.new
   
   def refresh(sender)
-    # puts "refresh"
     if @refreshing
-      puts ("ZAC refresh: already refreshing, ignoring refresh")
+      # puts ("ZAC refresh: already refreshing, ignoring refresh")
       return
     end
-    puts ("ZAC refreshing")
+    # puts ("ZAC refreshing")
     @refreshing = true
     @games = []
     @teams = []
@@ -76,21 +75,21 @@ class ZAC
   end
 
   def connection(connection, didFailWithError:error)
-    puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
+    # puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
     # cachedResponse = NSURLCache.sharedURLCache.cachedResponseForRequest(@request)
     @delegate.factoryFailedRefreshing
   end
 
   def connection(connection, willCacheResponse:cachedResponse)
-    puts("cachedResponse: #{cachedResponse}")
+    # puts("cachedResponse: #{cachedResponse}")
     return cachedResponse
   end
   
   def connectionDidFinishLoading(connection)
-    puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
+    # puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
     parseData(@receivedData)
     @refreshing = false
-    puts("ZAC: finished refreshing")
+    # puts("ZAC: finished refreshing")
     @delegate.factoryFinishedRefreshing
   end
   

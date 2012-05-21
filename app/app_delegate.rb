@@ -8,7 +8,7 @@ class AppDelegate
   end
   
   def applicationDidBecomeActive(application)
-    puts("#{self.class} applicationDidBecomeActive")
+    # puts("#{self.class} applicationDidBecomeActive")
     storyboard = UIStoryboard.storyboardWithName("ZAC", bundle:nil)
     @rootViewController = storyboard.instantiateViewControllerWithIdentifier("SplashScreen")
     @window.rootViewController = @rootViewController
@@ -29,7 +29,7 @@ class AppDelegate
   end
   
   def alertView(alertView, clickedButtonAtIndex:index)
-    puts("clicked index: #{index}")
+    # puts("clicked index: #{index}")
     ZAC.instance.refreshFromCache(self)
   end
   
