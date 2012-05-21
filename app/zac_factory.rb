@@ -60,6 +60,7 @@ class ZAC
     parser = NSXMLParser.alloc.initWithData(data)
     parser.setDelegate(self)
     parser.parse
+    @teams.sort! { |a,b| a.name <=> b.name }
   end
   
   # connection delegate methods
@@ -136,6 +137,7 @@ class ZAC
   def parseContents(string)
     hash = {}
     entryArray = string.split(', ')
+    # puts entryArray
     entryArray.each do |item|
       k,v = item.split(": ")
       hash[k] = v
