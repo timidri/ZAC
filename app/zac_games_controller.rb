@@ -1,5 +1,6 @@
 class ZACGamesController < UITableViewController
-  
+  include Styling
+
   SWITCH_TAG = 1
   SHOW_UPCOMING_GAMES = 0
   SHOW_ALL_GAMES = 1
@@ -11,12 +12,9 @@ class ZACGamesController < UITableViewController
     @switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
     @currentSelection = SHOW_UPCOMING_GAMES
     # ZAC.instance.refresh self
-
-    image = UIImage.imageNamed("back.jpeg")
-    imageView = UIImageView.alloc.initWithImage(image)
-    self.tableView.setBackgroundView(imageView)
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone
     tableView.rowHeight = 100
+    tablestyling
   end
 
   def factoryFinishedRefreshing
@@ -55,8 +53,9 @@ class ZACGamesController < UITableViewController
     game = @games[indexPath.row]
     cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
     cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}"
-    cell.contentView.backgroundColor = UIColor.colorWithWhite(0.0, alpha: 0.8)
-
+    cellstyling cell
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone
+    tableView.rowHeight = 100
     cell
   end
   

@@ -33,6 +33,6 @@ end
 desc "Deploy"
 task :deploy do
   Rake::Task['clean'].invoke
-  # Rake::Task['version:bump:revision'].invoke
+  Rake::Task['version:bump:revision'].invoke
   Rake::Task['testflight:submit'].invoke ENV['notes']
 end

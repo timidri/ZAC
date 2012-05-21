@@ -1,6 +1,9 @@
 class ZACTeamsController < UITableViewController
+  include Styling
+
   def viewDidLoad
     # puts("#{self.class} viewDidLoad")
+    tablestyling
   end
 
   def factoryFinishedRefreshing
@@ -24,6 +27,7 @@ class ZACTeamsController < UITableViewController
     cell = tableView.dequeueReusableCellWithIdentifier("TeamCell")
     team = ZAC.instance.teams[indexPath.row]
     cell.textLabel.text = team.name
+    cellstyling cell
     cell
   end
   
