@@ -55,7 +55,7 @@ class ZACGamesController < UITableViewController
     if @team == game.referee
       cell.detailTextLabel.text = "*fluiten* #{game.team1} vs #{game.team2}\nveld: #{game.field}"
     else
-      cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}"
+      cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}\nscheidsrechter: #{game.referee}"
     end
     cellstyling cell
     cell
