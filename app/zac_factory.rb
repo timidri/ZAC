@@ -40,6 +40,7 @@ class ZAC
   end
     
   def find_or_create_team teamName
+    teamName = "*UNKNOWN*" if teamName == nil
     team = find_team_by_name teamName
     # puts("find_or_create #{teamName} => #{team}")
     unless team
@@ -115,9 +116,11 @@ class ZAC
       dateTime = @dateFormatter.dateFromString("#{@rowHash["datum"]} #{@rowHash["tijd"]}")
       team1 = find_or_create_team(@rowHash["team1"])
       team2 = find_or_create_team(@rowHash["team2"])
-      game = Game.new(team1, team2, dateTime, @rowHash["veld"])
+      referee = find_or_create_team(@rowHash["scheidsrechter"])
+      game = Game.new(team1, team2, dateTime, @rowHash["veld"], referee)
       team1.addGame(game)
       team2.addGame(game)
+      referee.addGame(game)
       @games << game
       @entries << @rowHash
       @inEntry = false
@@ -139,7 +142,7 @@ class ZAC
     # puts entryArray
     entryArray.each do |item|
       k,v = item.split(": ")
-      hash[k] = v
+      hash[k] = v.strip
     end
     hash
   end

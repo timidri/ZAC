@@ -6,21 +6,18 @@ class Game
   attr_reader :team2
   attr_reader :datetime
   attr_reader :field
+  attr_reader :referee
   
-  def initialize team1, team2, datetime, field
+  def initialize team1, team2, datetime, field, referee
     @team1 = team1
     @team2 = team2
     @datetime = datetime
     @field = field
-#    @@all << self
+    @referee = referee
   end
 
-  # def self.all
-  #   @@all
-  # end
-
   def to_s
-    "#{@datetime}-#{@field}, #{@team1} vs #{@team2}"
+    "#{@datetime}-#{@field}, #{@team1} vs #{@team2}, referee: #{@referee}"
   end
   
   def opponentOf(team)

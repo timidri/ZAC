@@ -52,7 +52,11 @@ class ZACGamesController < UITableViewController
     cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
     game = @games[indexPath.row]
     cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
-    cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}"
+    if @team == game.referee
+      cell.detailTextLabel.text = "*fluiten* #{game.team1} vs #{game.team2}\nveld: #{game.field}"
+    else
+      cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}"
+    end
     cellstyling cell
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone
     tableView.rowHeight = 100
