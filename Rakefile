@@ -3,6 +3,7 @@ require 'motion/project'
 require 'rubygems'
 require 'motion-testflight'
 require 'rake/version_task'
+require 'bubble-wrap'
 
 Rake::VersionTask.new do |task|
   task.with_git_tag = true
