@@ -62,7 +62,6 @@ class ZAC
     entries.each do |entry|
       date = entry[:title][:$t]
       hash = parseContents entry[:content][:$t]
-      time = hash["tijd"]
       dateTime = @dateFormatter.dateFromString("#{date} #{hash["tijd"]}")
       team1 = find_or_create_team(hash["team1"])
       team2 = find_or_create_team(hash["team2"])
