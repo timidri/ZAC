@@ -10,13 +10,18 @@ class ZAC
   
   @@instance = ZAC.new
   
+
+  def self.instance
+    # puts "self.instance: #{@@instance}"
+    @@instance
+  end
+
   def refresh(sender)
     if @refreshing
       puts ("ZAC refresh: already refreshing, ignoring refresh")
       return
     end
     puts ("ZAC refreshing")
-    @refreshing = true
     @games = []
     @teams = []
     @delegate = sender    
@@ -25,20 +30,39 @@ class ZAC
       if response.ok?
         parseData response.body.to_str
         @delegate.factoryFinishedRefreshing
+        @refreshing = false
       else
-        @delegate.factoryFailedRefreshing
+        alertView = UIAlertView.alloc.initWithTitle("Offline!", message:"ZAC rooster ophalen is mislukt.\nDe app is alleen offline te gebruiken",
+          delegate:self, cancelButtonTitle:"Bummer!", otherButtonTitles:nil)
+        alertView.show
       end
     end
   end
   
-  def refreshFromCache(sender)
+  def find_team_by_name teamname
+    @teams.find do |team|
+      team.name == teamname
+    end
+  end
+
+  protected 
+
+  def alertView(alertView, clickedButtonAtIndex:index)
+    ZAC.instance.refreshFromCache()
+    @delegate.factoryFinishedRefreshing
+    @refreshing = false
+  end
+
+  def refreshFromCache()
     path = NSBundle.mainBundle.pathForResource("rooster", ofType:"json")
     data = NSFileManager.defaultManager.contentsAtPath(path)
     parseData(data)
     @refreshing = false
     @delegate.factoryFinishedRefreshing
   end
-    
+  
+  private
+
   def find_or_create_team teamName
     teamName = "*UNKNOWN*" if teamName == nil
     team = find_team_by_name teamName
@@ -49,13 +73,7 @@ class ZAC
     end
     team
   end
-  
-  def find_team_by_name teamname
-    @teams.find do |team|
-      team.name == teamname
-    end
-  end
-  
+    
   def parseData(data)
 
     json = BubbleWrap::JSON.parse(data)
@@ -85,11 +103,6 @@ class ZAC
       hash[k] = v.strip
     end
     hash
-  end
-  
-  def self.instance
-    # puts "self.instance: #{@@instance}"
-    @@instance
   end
   
   private_class_method :new
