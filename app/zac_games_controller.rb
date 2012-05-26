@@ -1,4 +1,4 @@
-class ZACGamesController < UITableViewController
+class ZACGamesController < ZACTableViewController
   include Styling
 
   SWITCH_TAG = 1
@@ -6,6 +6,7 @@ class ZACGamesController < UITableViewController
   SHOW_ALL_GAMES = 1
   
   def viewDidLoad
+    super
     # puts("#{self.class} viewDidLoad")
     @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("E dd-MM-yyyy HH:mm")
     @switch = self.view.viewWithTag(SWITCH_TAG)
@@ -14,12 +15,6 @@ class ZACGamesController < UITableViewController
     # ZAC.instance.refresh self
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone
     tableView.rowHeight = 80
-    tablestyling
-  end
-
-  def factoryFinishedRefreshing
-    puts "reloading games"
-    self.view.reloadData
   end
 
   def switchClicked(sender)
@@ -61,7 +56,4 @@ class ZACGamesController < UITableViewController
     cell
   end
   
-  def prepareForSegue(segue, sender:sender)
-    # puts("prepareForSegue, segue=#{segue.identifier}, sender=#{sender.textLabel.text}")
-  end
 end

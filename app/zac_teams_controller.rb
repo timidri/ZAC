@@ -1,15 +1,5 @@
-class ZACTeamsController < UITableViewController
+class ZACTeamsController < ZACTableViewController
   include Styling
-
-  def viewDidLoad
-    # puts("#{self.class} viewDidLoad")
-    tablestyling
-  end
-
-  def factoryFinishedRefreshing
-    puts "reloading teams..."
-    self.view.reloadData
-  end
 
   def viewDidAppear(animated)
     # puts("#{self.class} viewDitAppear, animated:#{animated}")
@@ -32,6 +22,7 @@ class ZACTeamsController < UITableViewController
   end
   
   def prepareForSegue(segue, sender:sender)
+    super
     destinationController = segue.destinationViewController
     clickedTeamName = sender.textLabel.text
     destinationController.teamname = clickedTeamName

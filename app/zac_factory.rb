@@ -76,9 +76,12 @@ class ZAC
   end
 
   def connection(connection, didFailWithError:error)
-    # puts("Connection failed! Error - " + error.localizedDescription + error.userInfo.objectForKey(NSURLErrorFailingURLStringErrorKey))
-    # cachedResponse = NSURLCache.sharedURLCache.cachedResponseForRequest(@request)
-    @delegate.factoryFailedRefreshing
++    alertView = UIAlertView.alloc.initWithTitle("Offline!", message:"ZAC rooster ophalen is mislukt.\nDe app is alleen offline te gebruiken",
+      delegate:self, cancelButtonTitle:"Bummer!", otherButtonTitles:nil)
+  end
+
+  def alertView(alertView, clickedButtonAtIndex:index)
+    ZAC.instance.refreshFromCache()
   end
 
   def connection(connection, willCacheResponse:cachedResponse)
@@ -90,7 +93,7 @@ class ZAC
     # puts("Succeeded! Received bytes of data: "  + @receivedData.length.description);
     parseData(@receivedData)
     @refreshing = false
-    # puts("ZAC: finished refreshing")
+    puts("ZAC: finished refreshing")
     @delegate.factoryFinishedRefreshing
   end
   
