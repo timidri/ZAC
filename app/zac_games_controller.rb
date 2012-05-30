@@ -53,9 +53,10 @@ class ZACGamesController < UITableViewController
     game = @games[indexPath.row]
     cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
     if @team == game.referee
-      cell.detailTextLabel.text = "*fluiten* #{game.team1} vs #{game.team2}\nveld: #{game.field}"
+      cell.textLabel.text += "\u{1F46E}"
+      cell.detailTextLabel.text = "#{game.team1} vs\n #{game.team2}\nveld: #{game.field}"
     else
-      cell.detailTextLabel.text = "tegen: #{game.opponentOf(@team)}\nveld: #{game.field}\nscheidsrechter: #{game.referee}"
+      cell.detailTextLabel.text = "\u{1F4A9}: #{game.opponentOf(@team)}\n\u{1F3C1}: #{game.field}\n\u{1F46E}: #{game.referee}"
     end
     cellstyling cell
     cell
