@@ -6,6 +6,7 @@ class ZAC
     # puts "ZAC initialize"
     @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
     @refreshing = false
+    @sheet_key = '0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE'
   end
   
   @@instance = ZAC.new
@@ -25,7 +26,7 @@ class ZAC
     @games = []
     @teams = []
     @delegate = sender    
-    link = 'https://spreadsheets.google.com/feeds/list/0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE/1/public/basic/'
+    link = "https://spreadsheets.google.com/feeds/list/#{@sheet_key}/1/public/basic/"
     BubbleWrap::HTTP.get("#{link}?alt=json") do |response|
       if response.ok?
         parseData response.body.to_str
