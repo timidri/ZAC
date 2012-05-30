@@ -1,8 +1,11 @@
 TODO
 ==========
 
-- improve refreshing content
-- consolidate layout code
+- add scores
+- add ranking
+- finalize icons
+- add notifications
+
 
 DONE
 ==========
@@ -12,3 +15,5 @@ DONE
 - default team
 - Caching
 - Handle device offline mode
+- improve refreshing content
+- consolidate layout code
