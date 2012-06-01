@@ -1,15 +1,32 @@
-TODO
+ROADMAP
 ==========
 
+0.9
+---
+- add icons
+- add referees
 - add scores
 - add ranking
-- finalize icons
-- add notifications
+- make map zoomable
 
+1.0
+---
+- clean up layout
+ - make date sections
+ - add separator lines in gametableview
+- improve tap feedback
+- finalize icons
+
+1.1
+---
+- add notifications
+- easter egg?
 
 DONE
 ==========
 
+0.8
+---
 - implement archive - today switch
 - show games from today
 - default team
