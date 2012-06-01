@@ -3,8 +3,8 @@ ROADMAP
 
 0.9
 ---
-- add icons
-- add referees
+- add icons (already in master)
+- add referees (already in master)
 - add scores
 - add ranking
 - make map zoomable
