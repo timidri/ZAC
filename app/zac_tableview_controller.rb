@@ -12,6 +12,7 @@ class ZACTableViewController < UITableViewController
     puts "observing #{self.class}"
     notification_center.observe self, UIApplicationWillEnterForegroundNotification do
       puts "#{self.class} received notification"
+      self.view.userInteractionEnabled = false
       @activityIndicator.startAnimating
       ZAC.instance.refresh(self)
     end
@@ -26,6 +27,7 @@ class ZACTableViewController < UITableViewController
     puts "reloading #{self.class} data..."
     view.reloadData
     @activityIndicator.stopAnimating
+    self.view.userInteractionEnabled = true
   end
 
 end
