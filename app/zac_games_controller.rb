@@ -51,7 +51,8 @@ class ZACGamesController < ZACTableViewController
       cell.textLabel.text += "\u{1F3C1}"
       cell.detailTextLabel.text = "#{game.team1} vs\n#{game.team2}\nveld: #{game.field}"
     else
-      cell.detailTextLabel.text = "Tegen: #{game.opponentOf(@team)}\nVeld: #{game.field}\n\u{1F3C1}: #{game.referee}"
+      cell.textLabel.text += game.get_score_for(@team)
+      cell.detailTextLabel.text = "Tegen: #{game.opponentOf(@team)}\nVeld: #{game.field}\n\u{1F3C1}: #{game.referee}  "
     end
     cellstyling cell
     cell

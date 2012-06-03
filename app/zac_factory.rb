@@ -88,6 +88,7 @@ class ZAC
       team2 = find_or_create_team(hash["team2"])
       referee = find_or_create_team(hash["scheidsrechter"])
       game = Game.new(team1, team2, dateTime, hash["veld"], referee)
+      game.set_scores hash["score1"], hash["score2"] if hash["score1"] and hash["score2"]
       if hash["punten1"]
         @points[hash["team1"]] = @points[hash["team1"]] ? @points[hash["team1"]] + hash["punten1"] : hash["punten1"]
       end

@@ -14,16 +14,23 @@ class Game
     @datetime = datetime
     @field = field
     @referee = referee
-    @points = {}
+    @score = {}
   end
 
-  def setpoints team1, points1, team2, points2
-    @points[team1] = points1
-    @points[team2] = points2
+  def set_scores score1, score2
+    @score[@team1.name] = score1
+    @score[@team2.name] = score2
   end
 
-  def getpoints team
-    @points[team]
+  def get_score_for team
+    string = " "
+    ourscore = @score[team.name]
+    theirscore = @score[opponentOf(team).name]
+    if ourscore and theirscore
+      string += "\u{1f3c6}" if ourscore > theirscore
+      string += "#{ourscore} - #{theirscore}"
+    end
+    string
   end
 
   def to_s
