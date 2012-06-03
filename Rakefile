@@ -25,7 +25,7 @@ Motion::Project::App.setup do |app|
 
   app.seed_id = '99Z3JG6WQC'
 
-  app.provisioning_profile = '/Users/joachim/ZAC_app_store.mobileprovision'
+  app.provisioning_profile = '/Users/joachim/ZAC_distribution.mobileprovision'
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
