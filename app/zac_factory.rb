@@ -1,6 +1,6 @@
 class ZAC
   
-  attr_reader :games, :teams
+  attr_reader :games, :teams, :points
       
   def initialize
     # puts "ZAC initialize"
@@ -25,6 +25,7 @@ class ZAC
     puts ("ZAC refreshing")
     @games = []
     @teams = []
+    @points = {}
     @delegate = sender    
     link = "https://spreadsheets.google.com/feeds/list/#{@sheet_key}/1/public/basic/"
     BubbleWrap::HTTP.get("#{link}?alt=json") do |response|
@@ -87,12 +88,19 @@ class ZAC
       team2 = find_or_create_team(hash["team2"])
       referee = find_or_create_team(hash["scheidsrechter"])
       game = Game.new(team1, team2, dateTime, hash["veld"], referee)
+      if hash["punten1"]
+        @points[hash["team1"]] = @points[hash["team1"]] ? @points[hash["team1"]] + hash["punten1"] : hash["punten1"]
+      end
+      if hash["punten2"]
+        @points[hash["team2"]] = @points[hash["team2"]] ? @points[hash["team2"]] + hash["punten2"] : hash["punten2"]
+      end
       team1.addGame(game)
       team2.addGame(game)
       referee.addGame(game)
       @games << game
     end
     @teams.sort! { |a,b| a.name <=> b.name }
+    @points = @points.sort_by{ |k,v| v }.reverse
   end
 
   def parseContents(string)

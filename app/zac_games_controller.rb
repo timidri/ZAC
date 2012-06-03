@@ -13,7 +13,6 @@ class ZACGamesController < ZACTableViewController
     @switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
     @currentSelection = SHOW_UPCOMING_GAMES
     # ZAC.instance.refresh self
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone
     tableView.rowHeight = 80
   end
 
@@ -47,11 +46,12 @@ class ZACGamesController < ZACTableViewController
     cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
     game = @games[indexPath.row]
     cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
+    cell.detailTextLabel.textColor = UIColor.whiteColor
     if @team == game.referee
-      cell.textLabel.text += "\u{1F46E}"
-      cell.detailTextLabel.text = "#{game.team1} vs\n #{game.team2}\nveld: #{game.field}"
+      cell.textLabel.text += "\u{1F3C1}"
+      cell.detailTextLabel.text = "#{game.team1} vs\n#{game.team2}\nveld: #{game.field}"
     else
-      cell.detailTextLabel.text = "\u{1F4A9}: #{game.opponentOf(@team)}\n\u{1F3C1}: #{game.field}\n\u{1F46E}: #{game.referee}"
+      cell.detailTextLabel.text = "Tegen: #{game.opponentOf(@team)}\nVeld: #{game.field}\n\u{1F3C1}: #{game.referee}"
     end
     cellstyling cell
     cell

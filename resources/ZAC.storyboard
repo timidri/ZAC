@@ -24,7 +24,51 @@
                     <tabBarItem key="tabBarItem" title="Kaart" image="map-icon.png" id="gX5-ch-13e"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="160" y="527"/>
+            <point key="canvasLocation" x="652" y="360"/>
+        </scene>
+        <!--Points Controller - Punten-->
+        <scene sceneID="Zmy-fw-dgs">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTH-lh-edy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="jfO-t7-9J5" customClass="ZACPointsController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XWp-Kw-AJg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScoreCell" id="SGs-L8-8mP">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Punten" id="wwM-27-74T"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1044" y="1032"/>
+        </scene>
+        <!--Navigation Controller - Punten-->
+        <scene sceneID="KdB-yS-CNE">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ase-dt-EYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="Tph-LF-lqK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Punten" image="trophy.png" id="4Mq-dx-QCn"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Lci-pF-sah">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.1764705926" green="0.38823533059999998" blue="0.2196078598" alpha="1" colorSpace="deviceRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jfO-t7-9J5" kind="relationship" relationship="rootViewController" id="y1t-9W-uzO"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="644" y="1032"/>
         </scene>
         <!--Teams Controller - Teams-->
         <scene sceneID="guG-w6-A6l">
@@ -62,7 +106,7 @@
                     <navigationItem key="navigationItem" title="Teams" id="CEw-oE-ANJ"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="574" y="-101"/>
+            <point key="canvasLocation" x="1044" y="-279"/>
         </scene>
         <!--Games Controller - Wedstrijden-->
         <scene sceneID="mQN-zj-ZYE">
@@ -121,7 +165,7 @@
                     <navigationItem key="navigationItem" title="Wedstrijden" id="G4k-mN-He8"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="980" y="-101"/>
+            <point key="canvasLocation" x="1450" y="-279"/>
         </scene>
         <!--Navigation Controller - Rooster-->
         <scene sceneID="RY7-WT-s2u">
@@ -139,7 +183,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="174" y="-101"/>
+            <point key="canvasLocation" x="644" y="-279"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="p3v-iQ-N6V">
@@ -172,7 +216,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-384" y="-253"/>
+            <point key="canvasLocation" x="-388" y="360"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="MfE-1E-PLx">
@@ -191,11 +235,12 @@
                     <connections>
                         <segue destination="fTm-m4-37t" kind="relationship" relationship="viewControllers" id="i0g-aV-we9"/>
                         <segue destination="Cy2-2n-6Kv" kind="relationship" relationship="viewControllers" id="mea-A6-gOg"/>
+                        <segue destination="Tph-LF-lqK" kind="relationship" relationship="viewControllers" id="dUI-hK-2gx"/>
                         <segue destination="pgE-Zd-cHE" kind="relationship" relationship="viewControllers" id="TDv-hX-0su"/>
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="-291" y="356"/>
+            <point key="canvasLocation" x="108" y="360"/>
         </scene>
         <!--Info Controller - Info-->
         <scene sceneID="Fza-a0-58k">
@@ -234,7 +279,7 @@
                     <tabBarItem key="tabBarItem" title="Info" image="star.png" id="DFe-vD-ZPU"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-266" y="936"/>
+            <point key="canvasLocation" x="1044" y="360"/>
         </scene>
     </scenes>
     <resources>
@@ -243,6 +288,7 @@
         <image name="logo_gg.png" width="109" height="137"/>
         <image name="map-icon.png" width="26" height="21"/>
         <image name="star.png" width="26" height="26"/>
+        <image name="trophy.png" width="24" height="24"/>
         <image name="zac.png" width="600" height="448"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

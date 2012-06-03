@@ -14,6 +14,16 @@ class Game
     @datetime = datetime
     @field = field
     @referee = referee
+    @points = {}
+  end
+
+  def setpoints team1, points1, team2, points2
+    @points[team1] = points1
+    @points[team2] = points2
+  end
+
+  def getpoints team
+    @points[team]
   end
 
   def to_s
