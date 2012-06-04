@@ -30,7 +30,7 @@ class ZACGamesController < ZACTableViewController
     end
     self.view.reloadData
   end
-  
+
   def teamname= teamname
     @team = ZAC.instance.find_team_by_name teamname
     navigationItem.title = teamname
@@ -49,10 +49,10 @@ class ZACGamesController < ZACTableViewController
     cell.detailTextLabel.textColor = UIColor.whiteColor
     if @team == game.referee
       cell.textLabel.text += "\u{1F3C1}"
-      cell.detailTextLabel.text = "#{game.team1} vs\n#{game.team2}\nveld: #{game.field}"
+      cell.detailTextLabel.text = "     #{game.team1}\n\u{1F19A} #{game.team2}\n\u{26F3} #{game.field}"
     else
-      cell.textLabel.text += game.get_score_for(@team)
-      cell.detailTextLabel.text = "Tegen: #{game.opponentOf(@team)}\nVeld: #{game.field}\n\u{1F3C1}: #{game.referee}  "
+      cell.textLabel.text += "    #{game.get_score_for(@team)}"
+      cell.detailTextLabel.text = "\u{1F19A} #{game.opponentOf(@team)}\n\u{26F3} #{game.field}\n\u{1F3C1} #{game.referee}  "
     end
     cellstyling cell
     if @team == game.referee
