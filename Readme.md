@@ -1,19 +1,10 @@
 ROADMAP
 ==========
 
-0.9
----
-- add icons (already in master)
-- add referees (already in master)
-- add scores
-- add ranking
-- make map zoomable
-
 1.0
 ---
 - clean up layout
- - make date sections
- - add separator lines in gametableview
+- make date sections
 - improve tap feedback
 - finalize icons
 
@@ -24,6 +15,16 @@ ROADMAP
 
 DONE
 ==========
+
+0.9
+---
+- add icons (already in master)
+- add referees (already in master)
+- add scores
+- add ranking
+- make map zoomable
+- add separator lines in gametableview
+
 
 0.8
 ---
