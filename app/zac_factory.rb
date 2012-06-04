@@ -1,7 +1,10 @@
 class ZAC
   
   attr_reader :games, :teams, :points
-      
+  
+  SAVE_FILE_NAME = "rooster"
+  SAVE_FILE_TYPE = "json"
+
   def initialize
     # puts "ZAC initialize"
     @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
@@ -30,7 +33,9 @@ class ZAC
     link = "https://spreadsheets.google.com/feeds/list/#{@sheet_key}/1/public/basic/"
     BubbleWrap::HTTP.get("#{link}?alt=json") do |response|
       if response.ok?
-        parseData response.body.to_str
+        # save the newly fetched response body
+        save_data response.body
+        parse_data response.body
         @delegate.factoryFinishedRefreshing
         @refreshing = false
       else
@@ -56,13 +61,51 @@ class ZAC
   end
 
   def refreshFromCache()
-    path = NSBundle.mainBundle.pathForResource("rooster", ofType:"json")
-    data = NSFileManager.defaultManager.contentsAtPath(path)
-    parseData(data)
+    data = load_data
+    parse_data data
     @refreshing = false
     @delegate.factoryFinishedRefreshing
   end
   
+  def save_data data
+    perror = Pointer.new(:object)
+    # Create the url to the documents directory. Create the directory if needed.
+    parentURL = NSFileManager.defaultManager.URLForDirectory(NSDocumentDirectory, inDomain:NSUserDomainMask,
+        appropriateForURL:nil, create:true, error:perror)
+
+    if !parentURL
+      puts "save_data: *** Failed to get documents directory: #{perror[0]}"
+      return nil
+    end
+
+    # append the filename to the url
+    furl = parentURL.URLByAppendingPathComponent("#{SAVE_FILE_NAME}.#{SAVE_FILE_TYPE}")
+    error = nil
+    ok = data.writeToURL(furl, options:NSDataWritingAtomic, error:perror)
+    if !ok
+      puts "save_data: *** Failed to write to #{furl.path}: #{perror[0]}"
+    end
+  end
+
+  def load_data
+    perror = Pointer.new(:object)
+    # create the url to the documents directory
+    parentURL = NSFileManager.defaultManager.URLForDirectory(NSDocumentDirectory, inDomain:NSUserDomainMask,
+        appropriateForURL:nil, create:true, error:perror)
+    # append the filename to the url
+    furl = parentURL.URLByAppendingPathComponent("#{SAVE_FILE_NAME}.#{SAVE_FILE_TYPE}")
+    # load the file from the documents directory
+    data = NSData.dataWithContentsOfURL(furl)
+    if !data
+      # bummer, load the bundled file
+      path = NSBundle.mainBundle.pathForResource(SAVE_FILE_NAME, ofType:SAVE_FILE_TYPE)
+      data = NSFileManager.defaultManager.contentsAtPath(path)
+      data
+    else
+      data
+    end
+  end
+
   private
 
   def find_or_create_team teamName
@@ -76,9 +119,8 @@ class ZAC
     team
   end
     
-  def parseData(data)
-
-    json = BubbleWrap::JSON.parse(data)
+  def parse_data data
+    json = BubbleWrap::JSON.parse data
     entries = json[:feed][:entry]
     entries.each do |entry|
       date = entry[:title][:$t]
@@ -90,10 +132,12 @@ class ZAC
       game = Game.new(team1, team2, dateTime, hash["veld"], referee)
       game.set_scores hash["score1"], hash["score2"] if hash["score1"] and hash["score2"]
       if hash["punten1"]
-        @points[hash["team1"]] = @points[hash["team1"]] ? @points[hash["team1"]] + hash["punten1"] : hash["punten1"]
+        punten1 = Integer(hash["punten1"])
+        @points[hash["team1"]] = @points[hash["team1"]] ? @points[hash["team1"]] + punten1 : punten1
       end
       if hash["punten2"]
-        @points[hash["team2"]] = @points[hash["team2"]] ? @points[hash["team2"]] + hash["punten2"] : hash["punten2"]
+        punten2 = Integer(hash["punten2"])
+        @points[hash["team2"]] = @points[hash["team2"]] ? @points[hash["team2"]] + punten2 : punten2
       end
       team1.addGame(game)
       team2.addGame(game)
