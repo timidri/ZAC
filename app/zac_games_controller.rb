@@ -55,6 +55,11 @@ class ZACGamesController < ZACTableViewController
       cell.detailTextLabel.text = "Tegen: #{game.opponentOf(@team)}\nVeld: #{game.field}\n\u{1F3C1}: #{game.referee}  "
     end
     cellstyling cell
+    if @team == game.referee
+      cell.textLabel.textColor = UIColor.colorWithRed(253/255.0, green:231/255.0, blue:50/255.0, alpha:1.0)
+      # line below doesn't work...
+      # cell.textLabel.backgroundColor = UIColor.whiteColor
+    end
     cell
   end
   
