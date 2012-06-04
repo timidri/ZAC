@@ -23,12 +23,12 @@ class Game
   end
 
   def get_score_for team
-    string = " "
+    string = "     "
     ourscore = @score[team.name]
     theirscore = @score[opponentOf(team).name]
     if ourscore and theirscore
-      string += "\u{1f3c6}" if ourscore > theirscore
       string += "#{ourscore} - #{theirscore}"
+      string += "\u{1f3c6}" if ourscore > theirscore
     end
     string
   end
