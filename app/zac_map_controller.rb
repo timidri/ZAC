@@ -12,17 +12,35 @@ class ZACMapController < UIViewController
     @webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)
     @webView.delegate = self
     # @webView.loadRequest(NSURLRequest.requestWithURL(NSURL.fileURLWithPath(NSBundle.mainBundle.pathForResource('kaart', ofType:'jpeg'))))
-    @webView.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString("http://zachockey.nl/2012/wp-content/uploads/Veldindeling-ZAC2012.jpg")))
+    @webview_loaded = false
+    @request = NSURLRequest.requestWithURL(NSURL.URLWithString("http://zachockey.nl/2012/wp-content/uploads/Veldindeling-ZAC2012.jpg"))
+    @webView.loadRequest(@request)
   end
 
   # Remove the following if you're showing a status bar that's not translucent
   def wantsFullScreenLayout
     true
   end
-  
+
+  def viewWillAppear(animated)
+    puts "observing #{self.class}"
+    # listen to the app coming to the foreground
+    notification_center.observe self, UIApplicationWillEnterForegroundNotification do
+      puts "#{self.class} received notification; @webview_loaded = #{@webview_loaded}"
+      # if the webview is not yet loaded, do it now
+      @webView.loadRequest(@request) if !@webview_loaded
+    end
+  end
+
+  def viewWillDisappear(animated)
+    puts "unobserving #{self.class}"
+    notification_center.unobserve self  
+  end
+
   # Only add the web view when the page has finished loading
   def webViewDidFinishLoad(webView)
     self.view.addSubview(@webView)
+    @webview_loaded = true
   end
   
   # Enable rotation
