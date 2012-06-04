@@ -90,10 +90,12 @@ class ZAC
       game = Game.new(team1, team2, dateTime, hash["veld"], referee)
       game.set_scores hash["score1"], hash["score2"] if hash["score1"] and hash["score2"]
       if hash["punten1"]
-        @points[hash["team1"]] = @points[hash["team1"]] ? @points[hash["team1"]] + hash["punten1"] : hash["punten1"]
+        punten1 = Integer(hash["punten1"])
+        @points[hash["team1"]] = @points[hash["team1"]] ? @points[hash["team1"]] + punten1 : punten1
       end
       if hash["punten2"]
-        @points[hash["team2"]] = @points[hash["team2"]] ? @points[hash["team2"]] + hash["punten2"] : hash["punten2"]
+        punten2 = Integer(hash["punten2"])
+        @points[hash["team2"]] = @points[hash["team2"]] ? @points[hash["team2"]] + punten2 : punten2
       end
       team1.addGame(game)
       team2.addGame(game)
