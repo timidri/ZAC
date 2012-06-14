@@ -100,10 +100,8 @@ class ZAC
       # bummer, load the bundled file
       path = NSBundle.mainBundle.pathForResource(SAVE_FILE_NAME, ofType:SAVE_FILE_TYPE)
       data = NSFileManager.defaultManager.contentsAtPath(path)
-      data
-    else
-      data
     end
+    data
   end
 
   private

@@ -5,3 +5,5 @@ resources/*.momd
 resources/*.storyboardc
 .DS*
 .idea
+doc
+.*

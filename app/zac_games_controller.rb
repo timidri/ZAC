@@ -8,11 +8,11 @@ class ZACGamesController < ZACTableViewController
   def viewDidLoad
     super
     # puts("#{self.class} viewDidLoad")
-    @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("E dd-MM-yyyy HH:mm")
+    @timeFormatter = NSDateFormatter.alloc.init.setDateFormat("HH:mm")
+    @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("E dd-MM-yyyy")
     @switch = self.view.viewWithTag(SWITCH_TAG)
     @switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
     @currentSelection = SHOW_UPCOMING_GAMES
-    # ZAC.instance.refresh self
     tableView.rowHeight = 80
   end
 
@@ -28,6 +28,13 @@ class ZACGamesController < ZACTableViewController
     else
       @games = @team.upcomingGames
     end
+    @dateHash = {}
+    @games.each do |game|
+      game_date = Time.local(0,0,0,*game.datetime.to_a[3...10])
+      # puts game_date
+      @dateHash[game_date] ||= []
+      @dateHash[game_date] << game
+    end
     self.view.reloadData
   end
 
@@ -37,15 +44,25 @@ class ZACGamesController < ZACTableViewController
     updateGamesSelection(@currentSelection)
   end
   
+  def numberOfSectionsInTableView(tableView)
+    @dateHash.size
+  end
+
+  def tableView(tableView, titleForHeaderInSection:section)
+    # puts "tableView titleForHeaderInSection:#{section} =>#{@dateHash.keys[section].to_s}"
+    @dateFormatter.stringFromDate(@dateHash.keys[section])
+  end
+
   def tableView(tableView, numberOfRowsInSection:section)
-      @games.count
+    # puts "tableView numberOfRowsInSection:#{section} =>#{@dateHash[@dateHash.keys[section]].size}"
+    @dateHash[@dateHash.keys[section]].size
   end
   
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
     # puts("cellForRowAtIndexPath: #{indexPath.row}")
     cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
     game = @games[indexPath.row]
-    cell.textLabel.text = "#{@dateFormatter.stringFromDate(game.datetime)}"
+    cell.textLabel.text = "#{@timeFormatter.stringFromDate(game.datetime)}"
     cell.detailTextLabel.textColor = UIColor.whiteColor
     if @team == game.referee
       cell.textLabel.text += "\u{1F3C1}"
