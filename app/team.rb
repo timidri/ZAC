@@ -25,13 +25,9 @@ class Team
   end
   
   def upcomingGames
-    games.find_all { |game| game.datetime >= Time.new }
+    time_limit = Time.new + 30*60 # a game lasts for half an hour
+    games.find_all { |game| game.datetime >= time_limit }
   end
-  
-  
-  # def self.all
-  #   @@all
-  # end
 
   def to_s
     @name
