@@ -10,19 +10,19 @@ class ZACGamesController < ZACTableViewController
     # puts("#{self.class} viewDidLoad")
     @timeFormatter = NSDateFormatter.alloc.init.setDateFormat("HH:mm")
     @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("E dd-MM-yyyy")
-    @switch = self.view.viewWithTag(SWITCH_TAG)
-    @switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
-    @currentSelection = SHOW_UPCOMING_GAMES
+    switch = self.view.viewWithTag(SWITCH_TAG)
+    switch.addTarget(self, action:'switchClicked:', forControlEvents:UIControlEventValueChanged)
+    @currentSelection = switch.selectedSegmentIndex
     tableView.rowHeight = 80
   end
 
   def switchClicked(sender)
     # puts("switch changed to #{sender.selectedSegmentIndex}")
     @currentSelection = sender.selectedSegmentIndex
-    updateGamesSelection(@currentSelection)
+    updateGamesSelection
   end
   
-  def updateGamesSelection(currentSelection)
+  def updateGamesSelection
     if @currentSelection == SHOW_ALL_GAMES
       @games = @team.games
     else
@@ -41,7 +41,7 @@ class ZACGamesController < ZACTableViewController
   def teamname= teamname
     @team = ZAC.instance.find_team_by_name teamname
     navigationItem.title = teamname
-    updateGamesSelection(@currentSelection)
+    updateGamesSelection
   end
   
   def numberOfSectionsInTableView(tableView)
