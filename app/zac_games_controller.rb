@@ -48,9 +48,21 @@ class ZACGamesController < ZACTableViewController
     @dateHash.size
   end
 
-  def tableView(tableView, titleForHeaderInSection:section)
-    # puts "tableView titleForHeaderInSection:#{section} =>#{@dateHash.keys[section].to_s}"
-    @dateFormatter.stringFromDate(@dateHash.keys[section])
+  # def tableView(tableView, titleForHeaderInSection:section)
+  #   # puts "tableView titleForHeaderInSection:#{section} =>#{@dateHash.keys[section].to_s}"
+  #   @dateFormatter.stringFromDate(@dateHash.keys[section])
+  # end
+
+  def tableView(tableView, viewForHeaderInSection:section)
+    headerView = UIView.alloc.initWithFrame([[0, 0],[tableView.bounds.size.width, 30]])
+    headerView.setBackgroundColor(UIColor.colorWithWhite(0.0, alpha: 0.6))
+    label = UILabel.alloc.initWithFrame([[0,0],[tableView.bounds.size.width, 20]])
+    label.textColor = UIColor.whiteColor
+    label.backgroundColor = UIColor.clearColor
+    label.textAlignment = UITextAlignmentCenter
+    label.text = @dateFormatter.stringFromDate(@dateHash.keys[section])
+    headerView.addSubview(label)
+    headerView
   end
 
   def tableView(tableView, numberOfRowsInSection:section)
@@ -66,10 +78,10 @@ class ZACGamesController < ZACTableViewController
     cell.detailTextLabel.textColor = UIColor.whiteColor
     if @team == game.referee
       cell.textLabel.text += "\u{1F3C1}"
-      cell.detailTextLabel.text = "     #{game.team1}\n\u{1F19A} #{game.team2}\n\u{26F3} #{game.field}"
+      cell.detailTextLabel.text = "            #{game.team1}\n            \u{1F19A} #{game.team2}\n            \u{26F3} #{game.field}"
     else
-      cell.textLabel.text += "    #{game.get_score_for(@team)}"
-      cell.detailTextLabel.text = "\u{1F19A} #{game.opponentOf(@team)}\n\u{26F3} #{game.field}\n\u{1F3C1} #{game.referee}  "
+      cell.textLabel.text += "                            #{game.get_score_for(@team)}"
+      cell.detailTextLabel.text = "            \u{1F19A} #{game.opponentOf(@team)}\n            \u{26F3} #{game.field}\n            \u{1F3C1} #{game.referee}  "
     end
     cellstyling cell
     if @team == game.referee
