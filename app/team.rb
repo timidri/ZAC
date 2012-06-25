@@ -32,4 +32,12 @@ class Team
   def to_s
     @name
   end
+
+  def short
+    if @name.size < 32
+      @name
+    else
+      @name[0...30] + "..."
+    end
+  end
 end
