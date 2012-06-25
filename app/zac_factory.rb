@@ -152,7 +152,7 @@ class ZAC
     # puts entryArray
     entryArray.each do |item|
       k,v = item.split(": ")
-      hash[k] = v.strip
+      hash[k] = v.strip if v
     end
     hash
   end
