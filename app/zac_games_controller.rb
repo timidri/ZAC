@@ -29,11 +29,16 @@ class ZACGamesController < ZACTableViewController
       @games = @team.upcomingGames
     end
     @dateHash = {}
+    @sectionArray = []
     @games.each do |game|
       game_date = Time.local(0,0,0,*game.datetime.to_a[3...10])
       # puts game_date
-      @dateHash[game_date] ||= []
+      if @dateHash[game_date] == nil
+        @dateHash[game_date] = []
+        @sectionArray << []
+      end
       @dateHash[game_date] << game
+      @sectionArray[@sectionArray.size - 1] << game
     end
     self.view.reloadData
   end
@@ -59,9 +64,9 @@ class ZACGamesController < ZACTableViewController
   end
   
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
-    # puts("cellForRowAtIndexPath: #{indexPath.row}")
+    # puts("cellForRowAtIndexPath: section=#{indexPath.section}, row=#{indexPath.row}")
     cell = tableView.dequeueReusableCellWithIdentifier("GameCell")
-    game = @games[indexPath.row]
+    game = @sectionArray[indexPath.section][indexPath.row]
     cell.textLabel.text = "#{@timeFormatter.stringFromDate(game.datetime)}"
     cell.detailTextLabel.textColor = UIColor.whiteColor
     if @team == game.referee
