@@ -66,6 +66,7 @@ class ZACGamesController < ZACTableViewController
     label.backgroundColor = UIColor.clearColor
     label.textAlignment = UITextAlignmentCenter
     label.text = @dateFormatter.stringFromDate(@dateHash.keys[section])
+    label.font = UIFont.boldSystemFontOfSize(18.0)
     headerView.addSubview(label)
     headerView
   end
