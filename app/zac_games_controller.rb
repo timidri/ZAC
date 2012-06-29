@@ -86,7 +86,7 @@ class ZACGamesController < ZACTableViewController
       cell.detailTextLabel.text = "            #{game.team1.short}\n            \u{1F19A} #{game.team2.short}\n            \u{26F3} #{game.field}"
     else
       cell.textLabel.text += "                            #{game.get_score_for(@team)}"
-      cell.detailTextLabel.text = "            \u{1F19A} #{game.opponentOf(@team)}\n            \u{26F3} #{game.field}\n            \u{1F3C1} #{game.referee.short}  "
+      cell.detailTextLabel.text = "            \u{1F19A} #{game.opponentOf(@team).short}\n            \u{26F3} #{game.field}\n            \u{1F3C1} #{game.referee.short}  "
     end
     cellstyling cell
     if @team == game.referee

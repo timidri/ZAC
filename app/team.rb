@@ -1,4 +1,6 @@
 class Team
+  SHORT_LENGTH=40
+
   attr_reader :name
 
   # @@all = []
@@ -34,10 +36,10 @@ class Team
   end
 
   def short
-    if @name.size < 32
+    if @name.size < SHORT_LENGTH
       @name
     else
-      @name[0...30] + "..."
+      @name[0...SHORT_LENGTH-3] + "..."
     end
   end
 end
