@@ -25,7 +25,7 @@ class ZACMapController < UIViewController
   def viewWillAppear(animated)
     puts "observing #{self.class}"
     # listen to the app coming to the foreground
-    notification_center.observe self, UIApplicationWillEnterForegroundNotification do
+    @foreground_observer  = App.notification_center.observe UIApplicationWillEnterForegroundNotification do
       puts "#{self.class} received notification; @webview_loaded = #{@webview_loaded}"
       # if the webview is not yet loaded, do it now
       @webView.loadRequest(@request) if !@webview_loaded
@@ -34,7 +34,7 @@ class ZACMapController < UIViewController
 
   def viewWillDisappear(animated)
     puts "unobserving #{self.class}"
-    notification_center.unobserve self  
+    App.notification_center.unobserve @foreground_observer
   end
 
   # Only add the web view when the page has finished loading

@@ -10,7 +10,7 @@ class ZACTableViewController < UITableViewController
 
   def viewWillAppear(animated)
     puts "observing #{self.class}"
-    notification_center.observe self, UIApplicationWillEnterForegroundNotification do
+    @foreground_observer = App.notification_center.observe UIApplicationWillEnterForegroundNotification do
       puts "#{self.class} received notification"
       self.view.userInteractionEnabled = false
       @activityIndicator.startAnimating
@@ -20,7 +20,7 @@ class ZACTableViewController < UITableViewController
 
   def viewWillDisappear(animated)
     puts "unobserving #{self.class}"
-    notification_center.unobserve self  
+    App.notification_center.unobserve @foreground_observer
   end
 
   def factoryFinishedRefreshing
