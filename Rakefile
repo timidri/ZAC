@@ -1,9 +1,8 @@
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project'
-require 'rubygems'
-require 'motion-testflight'
+require 'bundler'
+Bundler.require
 require 'rake/version_task'
-require 'bubble-wrap'
 
 Rake::VersionTask.new do |task|
   task.with_git_tag = true
@@ -25,7 +24,7 @@ Motion::Project::App.setup do |app|
 
   app.seed_id = '99Z3JG6WQC'
 
-  app.provisioning_profile = '/Users/joachim/ZAC_distribution.mobileprovision'
+  app.provisioning_profile = '/Users/joachim/ZAC_app_store.mobileprovision'
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
