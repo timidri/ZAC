@@ -24,13 +24,13 @@ Motion::Project::App.setup do |app|
 
   app.seed_id = '99Z3JG6WQC'
 
-  app.provisioning_profile = '/Users/joachim/ZAC_app_store.mobileprovision'
+  app.provisioning_profile = '/Users/joachim/ZAC_distribution.mobileprovision'
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
   app.icons = %w{ icon.png }
 
-  app.testflight.sdk = 'vendor/TestFlightSDK'
+  app.testflight.sdk = 'vendor/TestFlightSDK1.1'
   app.testflight.api_token = '79e630e7e4fe41ea82f17cf4afb6a918_NDQ4NDEwMjAxMi0wNS0xOSAxMTowNDoyNC42MjQzMjY'
   app.testflight.team_token = '2ef31a808a4e76475d33e11259b02e73_OTE3NTAyMDEyLTA1LTE5IDExOjA4OjA4LjcwOTg3OQ'
   
