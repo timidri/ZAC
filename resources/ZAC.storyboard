@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k32-Jd-00t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k32-Jd-00t">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Map Controller - Kaart-->
         <scene sceneID="2uk-vx-SNG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="daK-bi-pio" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Cy2-2n-6Kv" customClass="ZACMapController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qQw-Na-crb">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -21,15 +19,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Kaart" image="map-icon.png" id="gX5-ch-13e"/>
+                    <tabBarItem key="tabBarItem" title="Kaart" image="map_pin.png" id="gX5-ch-13e"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="daK-bi-pio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="652" y="360"/>
         </scene>
         <!--Points Controller - Punten-->
         <scene sceneID="Zmy-fw-dgs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTH-lh-edy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="jfO-t7-9J5" customClass="ZACPointsController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XWp-Kw-AJg">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -49,15 +47,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Punten" id="wwM-27-74T"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTH-lh-edy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1044" y="1032"/>
         </scene>
         <!--Navigation Controller - Punten-->
         <scene sceneID="KdB-yS-CNE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ase-dt-EYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="Tph-LF-lqK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Punten" image="trophy.png" id="4Mq-dx-QCn"/>
+                    <tabBarItem key="tabBarItem" title="Punten" image="award_ribbon.png" id="4Mq-dx-QCn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Lci-pF-sah">
                         <autoresizingMask key="autoresizingMask"/>
@@ -67,28 +65,28 @@
                         <segue destination="jfO-t7-9J5" kind="relationship" relationship="rootViewController" id="y1t-9W-uzO"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ase-dt-EYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="1032"/>
         </scene>
         <!--Teams Controller - Teams-->
         <scene sceneID="guG-w6-A6l">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5BH-6k-7mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="38M-8A-cEz" customClass="ZACTeamsController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xkq-Dq-WIW">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamCell" textLabel="IeU-Sc-UmS" style="IBUITableViewCellStyleDefault" id="D85-1Y-MDl">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamCell" textLabel="IeU-Sc-UmS" style="IBUITableViewCellStyleDefault" id="D85-1Y-MDl">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IeU-Sc-UmS">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,13 +103,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Teams" id="CEw-oE-ANJ"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5BH-6k-7mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1044" y="-279"/>
         </scene>
         <!--Games Controller - Wedstrijden-->
         <scene sceneID="mQN-zj-ZYE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pz2-cC-Q4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="yzj-lX-Zo8" customClass="ZACGamesController" sceneMemberID="viewController">
                     <tableView key="view" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="center" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="lqU-4v-b1G">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -164,15 +162,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Wedstrijden" id="G4k-mN-He8"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pz2-cC-Q4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1450" y="-279"/>
         </scene>
         <!--Navigation Controller - Rooster-->
         <scene sceneID="RY7-WT-s2u">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gLV-FX-xWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="fTm-m4-37t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Rooster" image="calendar-icon.png" id="cgC-gz-95Z"/>
+                    <tabBarItem key="tabBarItem" title="Rooster" image="monthly_calendar.png" id="cgC-gz-95Z"/>
                     <navigationItem key="navigationItem" id="qd6-9n-YXC"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wqh-FD-6kw">
                         <autoresizingMask key="autoresizingMask"/>
@@ -182,53 +180,48 @@
                         <segue destination="38M-8A-cEz" kind="relationship" relationship="rootViewController" id="gFi-C6-qGU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gLV-FX-xWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="-279"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="p3v-iQ-N6V">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZKS-x1-Ky3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SplashScreen" id="k32-Jd-00t" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PI8-kl-dSu">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="PI8-kl-dSu">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="rooster laden..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="JSa-GN-q7e">
-                                <rect key="frame" x="89" y="347" width="143" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="cey-KH-MFZ">
-                                <rect key="frame" x="142" y="302" width="37" height="37"/>
+                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="center" hidesWhenStopped="YES" animating="YES" style="gray" id="cey-KH-MFZ">
+                                <rect key="frame" x="151" y="413" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="zac.png" id="eLk-dL-ayK">
-                                <rect key="frame" x="-163" y="47" width="646" height="222"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo.png" id="hct-pP-8o2">
+                                <rect key="frame" x="10" y="176" width="300" height="195"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="zWY-pz-Hch" kind="modal" identifier="GoToMainScreen" modalTransitionStyle="flipHorizontal" id="uT3-0f-3fC"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZKS-x1-Ky3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-388" y="360"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="MfE-1E-PLx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3t5-gg-4BC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="" definesPresentationContext="YES" id="zWY-pz-Hch" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="2GK-sn-d2Z"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Dv3-tU-Gxc">
+                    <tabBar key="tabBar" contentMode="bottom" id="Dv3-tU-Gxc">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.99215692280000001" green="0.90588241820000004" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                         <color key="tintColor" red="0.1764705926" green="0.38823533059999998" blue="0.2196078598" alpha="1" colorSpace="deviceRGB"/>
                         <color key="selectedImageTintColor" red="0.99215692281723022" green="0.90588241815567017" blue="0.19607844948768616" alpha="1" colorSpace="deviceRGB"/>
                     </tabBar>
@@ -239,57 +232,64 @@
                         <segue destination="pgE-Zd-cHE" kind="relationship" relationship="viewControllers" id="TDv-hX-0su"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3t5-gg-4BC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="108" y="360"/>
         </scene>
         <!--Info Controller - Info-->
         <scene sceneID="Fza-a0-58k">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xly-lQ-da6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="pgE-Zd-cHE" customClass="ZACInfoController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LjH-MF-Dhh">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="zac.png" id="ezL-Np-VrZ">
-                                <rect key="frame" x="0.0" y="5" width="320" height="238"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="background.jpg" id="ezL-Np-VrZ">
+                                <rect key="frame" x="0.0" y="-141" width="320" height="494"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="zcL-Is-3rn">
-                                <rect key="frame" x="131" y="222" width="58" height="21"/>
+                                <rect key="frame" x="131" y="235" width="58" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="-1" height="-1"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Ontwikkeld voor ZAC door Dimitri Tischenko en Joachim Nolten" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="UV2-aD-2a0">
-                                <rect key="frame" x="20" y="361" width="280" height="30"/>
+                                <rect key="frame" x="20" y="381" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="-1" height="-1"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="logo_gg.png" id="j0S-IB-VgC">
-                                <rect key="frame" x="117" y="251" width="87" height="109"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo_gg.png" id="j0S-IB-VgC">
+                                <rect key="frame" x="117" y="264" width="87" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Info" image="star.png" id="DFe-vD-ZPU"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="users.png" id="DFe-vD-ZPU"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xly-lQ-da6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1044" y="360"/>
         </scene>
     </scenes>
     <resources>
-        <image name="calendar-icon.png" width="23" height="25"/>
+        <image name="award_ribbon.png" width="30" height="30"/>
+        <image name="background.jpg" width="1024" height="683"/>
         <image name="kaart.jpeg" width="543" height="767"/>
+        <image name="logo.png" width="300" height="195"/>
         <image name="logo_gg.png" width="109" height="137"/>
-        <image name="map-icon.png" width="26" height="21"/>
-        <image name="star.png" width="26" height="26"/>
-        <image name="trophy.png" width="24" height="24"/>
-        <image name="zac.png" width="600" height="448"/>
+        <image name="map_pin.png" width="30" height="30"/>
+        <image name="monthly_calendar.png" width="30" height="30"/>
+        <image name="users.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

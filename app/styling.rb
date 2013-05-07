@@ -1,7 +1,8 @@
 module Styling
   def tablestyling
-    image = UIImage.imageNamed("back.jpeg")
+    image = UIImage.imageNamed("zac.jpg")
     imageView = UIImageView.alloc.initWithImage(image)
+    imageView.setContentMode(UIViewContentModeScaleAspectFill)
     self.tableView.setBackgroundView(imageView)
     self.tableView.separatorColor = UIColor.colorWithWhite(1.0, alpha: 0.0)
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine

@@ -16,9 +16,7 @@ Motion::Project::App.setup do |app|
   app.info_plist['CFBundleVersion'] = version[2]
   app.info_plist['CFBundleIdentifier'] = 'org.nolten.zac'
 
-  app.icons = %w{Icon.png Icon-114.png}
-
-  app.codesign_certificate = 'iPhone Distribution: Joachim Nolten'
+  app.codesign_certificate = 'iPhone Developer: Joachim Nolten'
 
   app.identifier = 'org.nolten.zac'
 
@@ -28,7 +26,7 @@ Motion::Project::App.setup do |app|
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
-  app.icons = %w{ icon.png }
+  app.icons = %w{ icon.png icon@2x.png }
 
   app.entitlements['get-task-allow'] = false # Defaults to true somehow
   
