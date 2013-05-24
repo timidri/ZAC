@@ -16,13 +16,13 @@ Motion::Project::App.setup do |app|
   app.info_plist['CFBundleVersion'] = version[2]
   app.info_plist['CFBundleIdentifier'] = 'org.nolten.zac'
 
-  app.codesign_certificate = 'iPhone Developer: Joachim Nolten'
+  app.codesign_certificate = 'iPhone Distribution: Joachim Nolten'
 
   app.identifier = 'org.nolten.zac'
 
   app.seed_id = '99Z3JG6WQC'
 
-  app.provisioning_profile = '/Users/joachim/ZAC_distribution.mobileprovision'
+  app.provisioning_profile = '/Users/joachim/ZAC_distribution_profile.mobileprovision'
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
