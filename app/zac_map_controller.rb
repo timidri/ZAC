@@ -13,7 +13,7 @@ class ZACMapController < UIViewController
     @webView.delegate = self
     # @webView.loadRequest(NSURLRequest.requestWithURL(NSURL.fileURLWithPath(NSBundle.mainBundle.pathForResource('kaart', ofType:'jpeg'))))
     @webview_loaded = false
-    @request = NSURLRequest.requestWithURL(NSURL.URLWithString("http://zachockey.nl/2012/wp-content/uploads/Veldindeling-ZAC2012.jpg"))
+    @request = NSURLRequest.requestWithURL(NSURL.URLWithString("http://www.zachockey.nl/wp-content/uploads/Veldindeling-ZAC.jpg"))
     @webView.loadRequest(@request)
   end
 

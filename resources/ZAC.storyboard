@@ -192,14 +192,14 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo.png" id="hct-pP-8o2">
+                                <rect key="frame" x="-17" y="114" width="356" height="232"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="center" hidesWhenStopped="YES" animating="YES" style="gray" id="cey-KH-MFZ">
                                 <rect key="frame" x="151" y="413" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo.png" id="hct-pP-8o2">
-                                <rect key="frame" x="10" y="176" width="300" height="195"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -285,7 +285,7 @@
         <image name="award_ribbon.png" width="30" height="30"/>
         <image name="background.jpg" width="1024" height="683"/>
         <image name="kaart.jpeg" width="543" height="767"/>
-        <image name="logo.png" width="300" height="195"/>
+        <image name="logo.png" width="1024" height="679"/>
         <image name="logo_gg.png" width="109" height="137"/>
         <image name="map_pin.png" width="30" height="30"/>
         <image name="monthly_calendar.png" width="30" height="30"/>
