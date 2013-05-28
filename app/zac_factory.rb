@@ -1,19 +1,19 @@
 class ZAC
-  
+
   attr_reader :games, :teams, :points
-  
+
   SAVE_FILE_NAME = "rooster"
   SAVE_FILE_TYPE = "json"
 
   def initialize
     # puts "ZAC initialize"
-    @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH:mm:ss")
+    @dateFormatter = NSDateFormatter.alloc.init.setDateFormat("dd-MM-yyyy HH.mm")
     @refreshing = false
     @sheet_key = '0Aoe6kaQMB4f4dGRNajhvYlFCT3V4MVNOZlZXZ0tyckE'
   end
-  
+
   @@instance = ZAC.new
-  
+
 
   def self.instance
     # puts "self.instance: #{@@instance}"
@@ -29,7 +29,7 @@ class ZAC
     @games = []
     @teams = []
     @points = {}
-    @delegate = sender    
+    @delegate = sender
     link = "https://spreadsheets.google.com/feeds/list/#{@sheet_key}/1/public/basic/"
     BubbleWrap::HTTP.get("#{link}?alt=json") do |response|
       if response.ok?
@@ -45,14 +45,14 @@ class ZAC
       end
     end
   end
-  
+
   def find_team_by_name teamname
     @teams.find do |team|
       team.name == teamname
     end
   end
 
-  protected 
+  protected
 
   def alertView(alertView, clickedButtonAtIndex:index)
     ZAC.instance.refreshFromCache()
@@ -66,7 +66,7 @@ class ZAC
     @refreshing = false
     @delegate.factoryFinishedRefreshing
   end
-  
+
   def save_data data
     perror = Pointer.new(:object)
     # Create the url to the documents directory. Create the directory if needed.
@@ -116,13 +116,14 @@ class ZAC
     end
     team
   end
-    
+
   def parse_data data
     json = BubbleWrap::JSON.parse data
     entries = json[:feed][:entry]
     entries.each do |entry|
       date = entry[:title][:$t]
       hash = parseContents entry[:content][:$t]
+      puts "DATETIME: #{date} #{hash['tijd']}"
       dateTime = @dateFormatter.dateFromString("#{date} #{hash["tijd"]}")
       team1 = find_or_create_team(hash["team1"])
       team2 = find_or_create_team(hash["team2"])
@@ -156,6 +157,6 @@ class ZAC
     end
     hash
   end
-  
+
   private_class_method :new
 end
