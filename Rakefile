@@ -13,7 +13,7 @@ Motion::Project::App.setup do |app|
   app.name = 'ZAC'
   version = Version.current.to_a
   app.info_plist['CFBundleShortVersionString'] = version[0..1].join('.')
-  app.info_plist['CFBundleVersion'] = version[2]
+  app.info_plist['CFBundleVersion'] = '20' #version.inject{|a,i| a * 10 + i}.to_s
   app.info_plist['CFBundleIdentifier'] = 'org.nolten.zac'
 
   app.codesign_certificate = 'iPhone Distribution: Joachim Nolten'
@@ -22,7 +22,7 @@ Motion::Project::App.setup do |app|
 
   app.seed_id = '99Z3JG6WQC'
 
-  app.provisioning_profile = '/Users/joachim/ZAC_distribution_profile.mobileprovision'
+  app.provisioning_profile = '/Users/joachim/ZAC_appstore_profile.mobileprovision'
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
@@ -32,7 +32,7 @@ Motion::Project::App.setup do |app|
   
   app.development do
     # This entitlement is required during development but must not be used for release.
-    app.entitlements['get-task-allow'] = true
+    app.entitlements['get-task-allow'] = false 
   end
 
   app.testflight.sdk = 'vendor/TestFlightSDK1.1'
