@@ -10,7 +10,7 @@ class ZACTableViewController < UITableViewController
 
   def viewWillAppear(animated)
     puts "observing #{self.class}"
-    @foreground_observer = App.notification_center.observe UIApplicationWillEnterForegroundNotification do
+    @foreground_observer = App.notification_center.observe UIApplicationWillEnterForegroundNotification do |notification|
       puts "#{self.class} received notification"
       self.view.userInteractionEnabled = false
       @activityIndicator.startAnimating

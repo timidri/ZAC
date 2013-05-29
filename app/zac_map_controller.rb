@@ -25,7 +25,7 @@ class ZACMapController < UIViewController
   def viewWillAppear(animated)
     puts "observing #{self.class}"
     # listen to the app coming to the foreground
-    @foreground_observer  = App.notification_center.observe UIApplicationWillEnterForegroundNotification do
+    @foreground_observer  = App.notification_center.observe UIApplicationWillEnterForegroundNotification do |notification|
       puts "#{self.class} received notification; @webview_loaded = #{@webview_loaded}"
       # if the webview is not yet loaded, do it now
       @webView.loadRequest(@request) if !@webview_loaded
@@ -42,7 +42,7 @@ class ZACMapController < UIViewController
     self.view.addSubview(@webView)
     @webview_loaded = true
   end
-  
+
   # Enable rotation
   def shouldAutorotateToInterfaceOrientation(interfaceOrientation)
     # On the iPhone, don't rotate to upside-down portrait orientation
@@ -53,10 +53,10 @@ class ZACMapController < UIViewController
     end
     true
   end
-  
+
   # Open absolute links in Mobile Safari
   def webView(inWeb, shouldStartLoadWithRequest:inRequest, navigationType:inType)
-    if inType == UIWebViewNavigationTypeLinkClicked && inRequest.URL.scheme != 'file' 
+    if inType == UIWebViewNavigationTypeLinkClicked && inRequest.URL.scheme != 'file'
       UIApplication.sharedApplication.openURL(inRequest.URL)
       return false
     end
